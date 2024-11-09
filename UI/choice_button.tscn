@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://df452r7swku13"]
+
+[ext_resource type="Script" path="res://UI/choice_button.gd" id="1_gn4yq"]
+
+[node name="ChoiceButton" type="Button"]
+text = "Gouda boursin pepper jack"
+script = ExtResource("1_gn4yq")

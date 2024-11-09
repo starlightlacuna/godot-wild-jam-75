@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChoiceData" load_steps=2 format=3 uid="uid://dhnkn5x532q0r"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_j6sg1"]
+
+[resource]
+script = ExtResource("1_j6sg1")
+journal_tag = "TEST_1"
+text = "eat the cheese"

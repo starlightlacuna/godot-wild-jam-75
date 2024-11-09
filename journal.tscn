@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cncf0vy3hh8k1"]
+[gd_scene load_steps=7 format=3 uid="uid://cncf0vy3hh8k1"]
 
 [ext_resource type="Script" path="res://journal.gd" id="1_i0mx5"]
 [ext_resource type="FontFile" uid="uid://l3y6ih5w8yke" path="res://Assets/Fonts/vividly/Vividly-Regular.otf" id="1_saxwu"]
 [ext_resource type="Script" path="res://journal_label.gd" id="3_tdy8e"]
+[ext_resource type="PackedScene" uid="uid://df452r7swku13" path="res://UI/choice_button.tscn" id="4_euoka"]
+
+[sub_resource type="Theme" id="Theme_5ffud"]
+Button/font_sizes/font_size = 56
+Button/fonts/font = ExtResource("1_saxwu")
+RichTextLabel/font_sizes/normal_font_size = 56
+RichTextLabel/fonts/normal_font = ExtResource("1_saxwu")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hfd7"]
 bg_color = Color(0.720701, 0.656655, 0.571713, 1)
@@ -22,6 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_5ffud")
 script = ExtResource("1_i0mx5")
 
 [node name="Panel" type="Panel" parent="."]
@@ -37,22 +45,24 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("1_saxwu")
-theme_override_font_sizes/normal_font_size = 56
 bbcode_enabled = true
-text = "[wave amp=50.0 freq=5.0 connected=1][pulse freq=1.0 ease=-2.0][color=red]Red[/color][/pulse] leicester queso paneer.[/wave] Say cheese hard cheese fondue cut the cheese red leicester cheese strings croque monsieur stilton. Cheese and biscuits the big cheese cheddar roquefort melted cheese bocconcini gouda say cheese. [shake rate=20.0 level=5 connected=1]Squirty cheese[/shake] bavarian bergkase caerphilly stinking bishop boursin when the cheese comes out everybody's happy caerphilly."
+text = "[pulse freq=1.0 ease=-2.0][color=red]Red[/color][/pulse] leicester queso paneer. [wave amp=50.0 freq=5.0 connected=1]Say cheese[/wave] hard cheese fondue cut the cheese red leicester cheese strings croque monsieur stilton. [rainbow freq=0.2 sat=0.8 val=0.8]Cheese and biscuits[/rainbow] the big cheese cheddar roquefort melted cheese bocconcini gouda say cheese. [shake rate=20.0 level=5 connected=1]Squirty cheese[/shake] bavarian bergkase caerphilly stinking bishop boursin [tornado radius=5.0 freq=4.0 connected=1]when the cheese comes out everybody's happy[/tornado] caerphilly."
 scroll_following = true
 visible_characters_behavior = 1
 script = ExtResource("3_tdy8e")
-text_speed = 20.0
+text_speed = 80.0
 
 [node name="TextAdvanceTimer" type="Timer" parent="VBoxContainer/JournalLabel"]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ChoiceContainer" type="HFlowContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="ChoiceButton" parent="VBoxContainer/ChoiceContainer" instance=ExtResource("4_euoka")]
+layout_mode = 2
+
+[connection signal="donezo" from="VBoxContainer/JournalLabel" to="." method="_on_journal_label_donezo"]
 [connection signal="timeout" from="VBoxContainer/JournalLabel/TextAdvanceTimer" to="VBoxContainer/JournalLabel" method="_on_text_advance_timer_timeout"]
