@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://cncf0vy3hh8k1"]
+
+[ext_resource type="Script" path="res://journal.gd" id="1_i0mx5"]
+[ext_resource type="FontFile" uid="uid://l3y6ih5w8yke" path="res://Assets/Fonts/vividly/Vividly-Regular.otf" id="1_saxwu"]
+[ext_resource type="Script" path="res://journal_label.gd" id="3_tdy8e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hfd7"]
+bg_color = Color(0.720701, 0.656655, 0.571713, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.00351917, 0.00351917, 0.00351916, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[node name="Journal" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i0mx5")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3hfd7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(880, 460)
+layout_mode = 2
+
+[node name="JournalLabel" type="RichTextLabel" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("1_saxwu")
+theme_override_font_sizes/normal_font_size = 56
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=5.0 connected=1][pulse freq=1.0 ease=-2.0][color=red]Red[/color][/pulse] leicester queso paneer.[/wave] Say cheese hard cheese fondue cut the cheese red leicester cheese strings croque monsieur stilton. Cheese and biscuits the big cheese cheddar roquefort melted cheese bocconcini gouda say cheese. [shake rate=20.0 level=5 connected=1]Squirty cheese[/shake] bavarian bergkase caerphilly stinking bishop boursin when the cheese comes out everybody's happy caerphilly."
+scroll_following = true
+visible_characters_behavior = 1
+script = ExtResource("3_tdy8e")
+text_speed = 20.0
+
+[node name="TextAdvanceTimer" type="Timer" parent="VBoxContainer/JournalLabel"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="timeout" from="VBoxContainer/JournalLabel/TextAdvanceTimer" to="VBoxContainer/JournalLabel" method="_on_text_advance_timer_timeout"]
