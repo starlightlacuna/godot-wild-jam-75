@@ -20,21 +20,24 @@ func _ready() -> void:
 
 func _on_journal_label_donezo() -> void:
 	if choice_made:
-		var has_next_entry: bool = JournalManager.get_next_journal_entry()
-		if not has_next_entry:
+		var has_next_entry: bool = true if JournalManager.current_entry.next_entry else false
+		var continue_day: bool = JournalManager.get_next_journal_entry(has_next_entry)
+		if not continue_day:
 			# TODO: Move to end of day summary?
 			return
-		journal_label.initialize(JournalManager.current_entry.text)
+		journal_label.append_text(JournalManager.current_entry.text)
 		journal_label.start_text_advance()
+		choice_made = false
 	else:
 		show_choices()
 
 func _on_choice_button_pressed(choice_data: ChoiceData) -> void:
 	# TODO - Add choice selection animation.
 	clear_choices()
-	journal_label.append_choice_text(choice_data.text + "\n")
+	if choice_data.choice_tag != ChoiceData.Tags.CONTINUE:
+		journal_label.append_choice_text(choice_data.text + "\n")
+		JournalManager.append_choice(choice_data)
 	choice_made = true
-	JournalManager.append_choice(choice_data)
 
 func clear_choices() -> void:
 	for child in choice_container.get_children():

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=3 format=3 uid="uid://cftthc8brjq36"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_dvp1f"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_tjucs"]
+
+[resource]
+script = ExtResource("2_tjucs")
+text = "\\nI saw the class roster, and I saw Sam. He's "
+choices = Array[ExtResource("1_dvp1f")]([])
