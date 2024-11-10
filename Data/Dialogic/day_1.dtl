@@ -1,0 +1,8 @@
+Tomorrow's the first day! I've been dreaming of this my whole life!\
+I'm 
+- excited! | [day1_excited="true"]
+- nervous... | [day1_excited="false"]
+if {true} == true:
+	excited!
+else:
+	nervous...
