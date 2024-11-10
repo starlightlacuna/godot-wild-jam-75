@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=4 format=3 uid="uid://ypn802b3kact"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_04g8p"]
+[ext_resource type="Resource" uid="uid://cvjgqcqte10uc" path="res://Data/Prologue/prologue2.tres" id="2_7wbr8"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_bnh5c"]
+
+[resource]
+script = ExtResource("2_bnh5c")
+text = "Long ago, a war was waged by two nations. One, a nation of powerful warriors; the other a nation of great wizards. The armies of the nation of warriors, with their far superior numbers and better generals, easily conquered much of the territory of the nation of wizards. After tremendous losses, the wizards made their last stand in their capital's citadel. With the warriors streaming through and sacking their city, the wizards completed their final spell."
+choices = Array[ExtResource("1_04g8p")]([])
+next_entry = ExtResource("2_7wbr8")

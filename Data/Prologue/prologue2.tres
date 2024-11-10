@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=4 format=3 uid="uid://cvjgqcqte10uc"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_6etxr"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_awdim"]
+[ext_resource type="Resource" uid="uid://bsueltvavfvd7" path="res://Data/Prologue/prologue3.tres" id="2_q0nm1"]
+
+[resource]
+script = ExtResource("2_awdim")
+text = "The earth shook violently and the citadel was sundered as it was swallowed by the ground. When the dust settled, a terrible roar echoed across the land. Monsters erupted from the ruins and ripped and tore through the warrior armies. Thus was the first monster lair created."
+choices = Array[ExtResource("1_6etxr")]([])
+next_entry = ExtResource("2_q0nm1")

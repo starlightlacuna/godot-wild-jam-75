@@ -11,3 +11,5 @@ static var Tags: Dictionary = {
 
 @export var choice_tag: String
 @export var text: String
+@export var effects: Array[ChoiceEffect]
+@export var conditions: Array[ChoiceCondition]

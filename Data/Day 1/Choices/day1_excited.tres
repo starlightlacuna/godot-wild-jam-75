@@ -1,8 +1,18 @@
-[gd_resource type="Resource" script_class="ChoiceData" load_steps=2 format=3 uid="uid://dm4klkgqvv15j"]
+[gd_resource type="Resource" script_class="ChoiceData" load_steps=5 format=3 uid="uid://dm4klkgqvv15j"]
 
 [ext_resource type="Script" path="res://Data/choice_data.gd" id="1_7pxo2"]
+[ext_resource type="Script" path="res://Data/choice_effect.gd" id="1_ucx83"]
+[ext_resource type="Script" path="res://Data/change_world_value.gd" id="2_57tl6"]
+
+[sub_resource type="Resource" id="Resource_curr6"]
+script = ExtResource("2_57tl6")
+key = ""
+value = ""
+type = 0
+operation = 0
 
 [resource]
 script = ExtResource("1_7pxo2")
 choice_tag = "DAY1_NERVOUS"
 text = "nervous..."
+effects = Array[ExtResource("1_ucx83")]([SubResource("Resource_curr6")])

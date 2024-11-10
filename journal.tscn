@@ -37,11 +37,11 @@ custom_minimum_size = Vector2(960, 540)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3hfd7")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="JournalEntryContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(880, 460)
 layout_mode = 2
 
-[node name="JournalLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="EntryLabel" type="RichTextLabel" parent="JournalEntryContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -52,16 +52,16 @@ visible_characters_behavior = 1
 script = ExtResource("3_tdy8e")
 text_speed = 80.0
 
-[node name="TextAdvanceTimer" type="Timer" parent="VBoxContainer/JournalLabel"]
+[node name="TextAdvanceTimer" type="Timer" parent="JournalEntryContainer/EntryLabel"]
 wait_time = 0.1
 one_shot = true
 
-[node name="ChoiceContainer" type="HFlowContainer" parent="VBoxContainer"]
+[node name="ChoiceContainer" type="HFlowContainer" parent="JournalEntryContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ChoiceButton" parent="VBoxContainer/ChoiceContainer" instance=ExtResource("4_euoka")]
+[node name="ChoiceButton" parent="JournalEntryContainer/ChoiceContainer" instance=ExtResource("4_euoka")]
 layout_mode = 2
 
-[connection signal="donezo" from="VBoxContainer/JournalLabel" to="." method="_on_journal_label_donezo"]
-[connection signal="timeout" from="VBoxContainer/JournalLabel/TextAdvanceTimer" to="VBoxContainer/JournalLabel" method="_on_text_advance_timer_timeout"]
+[connection signal="donezo" from="JournalEntryContainer/EntryLabel" to="." method="_on_entry_label_donezo"]
+[connection signal="timeout" from="JournalEntryContainer/EntryLabel/TextAdvanceTimer" to="JournalEntryContainer/EntryLabel" method="_on_text_advance_timer_timeout"]

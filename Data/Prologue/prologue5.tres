@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=3 format=3 uid="uid://g0i66ygu6tu7"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_2knwd"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_6vg0x"]
+
+[resource]
+script = ExtResource("2_6vg0x")
+text = "You live near one such academy, and soon you will be old enough to apply for admission. You decide to keep a journal of your time at the Ranger academy."
+choices = Array[ExtResource("1_2knwd")]([])

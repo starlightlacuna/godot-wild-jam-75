@@ -10,18 +10,15 @@ extends Resource
 ## The next entry in the chain. Only used when the entry has the "Continue" choice.
 @export var next_entry: JournalEntryData
 
-
+#
 #class_name JournalEntryData
 #extends Resource
 #
-#var list: Array = [
-	#"Entry Text",
-	#[ChoiceData1, ChoiceData2],
-	#"Entry Text",
-	#"Entry Text",
-	#[ChoiceData3, ChoiceData4]
-#]
+#const TEXT: String = "text"
+#const CHOICES: String = "choices"
+#
+#var content: Dictionary = {}
 #
 ### Must be overridden!
-#func get_next_index() -> int:
-	#return
+#func get_next_content_node() -> void:
+	#printerr("DATA NOT OVERRIDEN")
