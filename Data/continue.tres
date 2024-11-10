@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChoiceData" load_steps=2 format=3 uid="uid://drngiwv6401v0"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_u50g5"]
+
+[resource]
+script = ExtResource("1_u50g5")
+choice_tag = "CONTINUE"
+text = "Continue"

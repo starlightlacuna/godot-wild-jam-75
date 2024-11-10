@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChoiceData" load_steps=2 format=3 uid="uid://dm4klkgqvv15j"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_7pxo2"]
+
+[resource]
+script = ExtResource("1_7pxo2")
+choice_tag = "DAY1_NERVOUS"
+text = "nervous..."

@@ -10,8 +10,8 @@ signal donezo
 @onready var timer: Timer = $TextAdvanceTimer
 
 func _ready() -> void:
-	set_visible_characters(0)
-	timer.set_wait_time(1.0 / text_speed)
+	## Set the timer wait time
+	initialize("", 0.0)
 
 func _on_text_advance_timer_timeout() -> void:
 	if get_visible_characters() < get_total_character_count():
@@ -22,4 +22,15 @@ func _on_text_advance_timer_timeout() -> void:
 
 func append_choice_text(p_text: String) -> void:
 	append_text(p_text)
+	timer.start()
+
+func initialize(p_text: String = "", p_text_speed: float = 0.0) -> void:
+	if not p_text.is_empty():
+		set_text(p_text)
+		set_visible_characters(0)
+	if p_text_speed > 0.0:
+		text_speed = p_text_speed
+	timer.set_wait_time(1.0 / text_speed)
+
+func start_text_advance() -> void:
 	timer.start()

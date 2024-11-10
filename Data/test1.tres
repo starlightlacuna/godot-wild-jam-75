@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_kukel")
-journal_tag = "TEST_2"
+choice_tag = "TEST_1"
 text = "ignore the cheese"
