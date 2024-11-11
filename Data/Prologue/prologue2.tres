@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_awdim")
-text = "The earth shook violently and the citadel was sundered as it was swallowed by the ground. When the dust settled, a terrible roar echoed across the land. Monsters erupted from the ruins and ripped and tore through the warrior armies. Thus was the first monster lair created."
+text = "With the warriors streaming through and sacking their city, the wizards completed their final spell. The earth shook violently and the citadel was sundered as it was swallowed by the ground. When the dust settled, a terrible roar echoed across the land. Monsters erupted from the ruins and ripped and tore through the warrior armies. Thus was the first monster lair created."
 choices = Array[ExtResource("1_6etxr")]([])
 next_entry = ExtResource("2_q0nm1")
+sequence_tag = "prologue"

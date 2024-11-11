@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_bnh5c")
-text = "Long ago, a war was waged by two nations. One, a nation of powerful warriors; the other a nation of great wizards. The armies of the nation of warriors, with their far superior numbers and better generals, easily conquered much of the territory of the nation of wizards. After tremendous losses, the wizards made their last stand in their capital's citadel. With the warriors streaming through and sacking their city, the wizards completed their final spell."
+text = "Long ago, a war was waged by two nations. One, a nation of powerful warriors; the other a nation of great wizards. The armies of the nation of warriors, with their far superior numbers and better generals, easily conquered much of the territory of the nation of wizards. After tremendous losses, the wizards made their last stand in their capital's citadel."
 choices = Array[ExtResource("1_04g8p")]([])
 next_entry = ExtResource("2_7wbr8")
+sequence_tag = "prologue"

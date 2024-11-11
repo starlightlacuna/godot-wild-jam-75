@@ -7,3 +7,4 @@
 script = ExtResource("2_6vg0x")
 text = "You live near one such academy, and soon you will be old enough to apply for admission. You decide to keep a journal of your time at the Ranger academy."
 choices = Array[ExtResource("1_2knwd")]([])
+sequence_tag = "prologue"

@@ -47,16 +47,23 @@ var world: Dictionary = {
 	"day1_excited": false
 }
 
-var entry_sequence_starts: Array[JournalEntryData] = [
-	preload("res://Data/Prologue/prologue1.tres")
-]
-
-var current_sequence_index: int = -1
+var sequences: Dictionary = {
+	"prologue": {
+		"start": preload("res://Data/Prologue/prologue1.tres"),
+		"complete": false,
+		"choice_history": []
+	}
+}
 
 func _ready() -> void:
 	#print(content.day1.START.TEXT)
 	pass
 
-func get_next_sequence_start() -> JournalEntryData:
-	current_sequence_index += 1
-	return entry_sequence_starts[current_sequence_index]
+func get_sequence_start(key: String) -> JournalEntryData:
+	return sequences[key].start
+
+func is_sequence_complete(key: String) -> bool:
+	if not sequences.has(key):
+		printerr("Sequences dictionary doesn't have key: " + key)
+		return false
+	return sequences[key].complete

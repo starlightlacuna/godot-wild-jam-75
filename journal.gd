@@ -1,10 +1,15 @@
 class_name Journal
 extends CenterContainer
 
+enum Mode { JOURNAL_ENTRY, INTERSEQUENCE }
+
 @export var journal_entry_override: JournalEntryData
 
 @onready var choice_container: HFlowContainer = %ChoiceContainer
 @onready var entry_label: JournalLabel = %EntryLabel
+@onready var journal_entry_container: VBoxContainer = $JournalEntryContainer
+@onready var intersequence_container: HBoxContainer = $IntersequenceContainer
+@onready var sequence_button_container: VBoxContainer = %SequenceButtonContainer
 
 const choice_button_scene: PackedScene = preload("res://UI/choice_button.tscn")
 const continue_button_data: ChoiceData = preload("res://Data/continue.tres")
@@ -13,12 +18,15 @@ var choice_made: bool = false
 var current_entry: JournalEntryData
 
 func _ready() -> void:
+	for child in sequence_button_container.get_children():
+		var sequence_button: SequenceButton = child
+		sequence_button.pressed.connect(_on_sequence_button_pressed.bind(sequence_button.sequence_tag))
 	clear_choices()
-	#if journal_entry_override:
-		#JournalManager.current_journal_entry = journal_entry_override
-	
-	current_entry = JournalManager.get_next_sequence_start()
-	_start_current_sequence()
+	if journal_entry_override:
+		current_entry = journal_entry_override
+	else:
+		current_entry = JournalManager.get_next_sequence_start()
+	_start_current_entry()
 
 func _on_entry_label_donezo() -> void:
 	if choice_made:
@@ -48,14 +56,34 @@ func _on_continue_button_pressed() -> void:
 	clear_choices()
 	if current_entry.next_entry:
 		current_entry = current_entry.next_entry
-		_start_current_sequence()
-		
+		_start_current_entry()
 	else:
 		# TODO: Move to the next sequence.
 		print("SEQUENCE COMPLETE. MOVING TO INTERSEQUENCE MODE.")
-		pass
+		JournalManager.sequences[current_entry.sequence_tag].complete = true
+		_change_mode(Mode.INTERSEQUENCE)
 
-func _start_current_sequence() -> void:
+func _on_sequence_button_pressed(sequence_tag: String) -> void:
+	current_entry = JournalManager.get_sequence_start(sequence_tag)
+	_start_current_entry()
+
+func _change_mode(mode: Mode) -> void:
+	match mode:
+		Mode.JOURNAL_ENTRY:
+			journal_entry_container.show()
+			intersequence_container.hide()
+		Mode.INTERSEQUENCE:
+			journal_entry_container.hide()
+			intersequence_container.show()
+			for child in sequence_button_container.get_children():
+				var sequence_button: SequenceButton = child
+				if JournalManager.is_sequence_complete(sequence_button.sequence_tag):
+					sequence_button.show()
+				else:
+					sequence_button.hide()
+
+func _start_current_entry() -> void:
+	_change_mode(Mode.JOURNAL_ENTRY)
 	entry_label.initialize(current_entry.text)
 	entry_label.start_text_advance()
 
