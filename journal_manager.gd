@@ -2,7 +2,7 @@ extends Node
 
 ## This contains all the game's state variables. It's referenced by journal entries and choices.
 var world: Dictionary = {
-	"player.attitude": 1,
+	"player.attitude": 0,
 	"player.esprit_de_corps": 0,
 }
 

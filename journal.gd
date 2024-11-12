@@ -58,7 +58,6 @@ func _on_continue_button_pressed() -> void:
 	else:
 		print("SEQUENCE COMPLETE. MOVING TO INTERSEQUENCE MODE.")
 		JournalManager.sequences[current_entry.sequence_tag].complete = true
-		
 		_change_mode(Mode.INTERSEQUENCE)
 
 func _on_sequence_button_pressed(sequence_tag: String) -> void:
