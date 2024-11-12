@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Data/choice_data.gd" id="1_vi2jd"]
 [ext_resource type="Resource" uid="uid://drngiwv6401v0" path="res://Data/continue.tres" id="2_o4btd"]
-[ext_resource type="Resource" uid="uid://cftthc8brjq36" path="res://Data/Day 1/Entries/day1_3.tres" id="3_lqvlg"]
+[ext_resource type="Resource" uid="uid://cftthc8brjq36" path="res://Data/Day 1/Entries/day1_2.tres" id="3_lqvlg"]
 [ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="4_rd27n"]
 
 [resource]

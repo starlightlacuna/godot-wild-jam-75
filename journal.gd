@@ -25,31 +25,29 @@ func _ready() -> void:
 	if journal_entry_override:
 		current_entry = journal_entry_override
 	else:
-		current_entry = JournalManager.get_next_sequence_start()
+		current_entry = JournalManager.get_sequence_start("prologue")
 	_start_current_entry()
 
 func _on_entry_label_donezo() -> void:
 	if choice_made:
-		var has_next_entry: bool = true if JournalManager.current_entry.next_entry else false
-		var continue_day: bool = JournalManager.get_next_journal_entry(has_next_entry)
-		if not continue_day:
-			# TODO: Move to end of day summary?
-			return
-		entry_label.append_text(JournalManager.current_entry.text)
-		entry_label.start_text_advance()
+		var has_next_entry: bool = true if current_entry.next_entry else false
+		if has_next_entry:
+			current_entry = current_entry.next_entry
+			entry_label.append_text(_get_current_entry_text())
+			entry_label.start_text_advance()
+		else:
+			# TODO: Move to Intersequence Mode (Perhaps not needed?)
+			# We're already doing that in the continue button handler.
+			pass
 		choice_made = false
 	else:
 		show_choices()
 
 func _on_choice_button_pressed(choice_data: ChoiceData) -> void:
-	# TODO - Add choice selection animation.
+	# TODO (REACH): Add choice selection animation.
 	clear_choices()
-	if choice_data.choice_tag != ChoiceData.Tags.CONTINUE:
-		entry_label.append_choice_text(choice_data.text + "\n")
-		JournalManager.append_choice(choice_data)
-	else:
-		# TODO: Handle continues!
-		pass
+	entry_label.append_choice_text(choice_data.text + "\n")
+	JournalManager.apply_choice_effects(choice_data)
 	choice_made = true
 
 func _on_continue_button_pressed() -> void:
@@ -58,9 +56,9 @@ func _on_continue_button_pressed() -> void:
 		current_entry = current_entry.next_entry
 		_start_current_entry()
 	else:
-		# TODO: Move to the next sequence.
 		print("SEQUENCE COMPLETE. MOVING TO INTERSEQUENCE MODE.")
 		JournalManager.sequences[current_entry.sequence_tag].complete = true
+		
 		_change_mode(Mode.INTERSEQUENCE)
 
 func _on_sequence_button_pressed(sequence_tag: String) -> void:
@@ -75,17 +73,31 @@ func _change_mode(mode: Mode) -> void:
 		Mode.INTERSEQUENCE:
 			journal_entry_container.hide()
 			intersequence_container.show()
+			var available_sequence_keys: Array[String] = JournalManager.get_available_sequences()
 			for child in sequence_button_container.get_children():
 				var sequence_button: SequenceButton = child
-				if JournalManager.is_sequence_complete(sequence_button.sequence_tag):
+				if available_sequence_keys.has(sequence_button.sequence_tag):
 					sequence_button.show()
 				else:
 					sequence_button.hide()
 
+func _get_current_entry_text() -> String:
+	var text: String
+	for text_with_requirements in current_entry.texts:
+		if text_with_requirements.are_requirements_fulfilled():
+			text = text_with_requirements.text
+			break
+	return text
+
 func _start_current_entry() -> void:
+	# TODO: Replay the player's choice history.
 	_change_mode(Mode.JOURNAL_ENTRY)
-	entry_label.initialize(current_entry.text)
+	var text: String = _get_current_entry_text()
+	entry_label.initialize(text)
 	entry_label.start_text_advance()
+
+func _clear_entry_label() -> void:
+	entry_label.clear()
 
 func clear_choices() -> void:
 	for child in choice_container.get_children():
@@ -100,7 +112,7 @@ func show_choices() -> void:
 		choice_container.add_child(continue_button)
 		return
 		
-	var choices: Array[ChoiceData] = JournalManager.current_entry.choices
+	var choices: Array[ChoiceData] = current_entry.choices
 	for choice_data in choices:
 		var data: ChoiceData = choice_data
 		var new_button: ChoiceButton = choice_button_scene.instantiate()

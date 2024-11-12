@@ -1,12 +1,19 @@
-[gd_resource type="Resource" script_class="JournalEntryData" load_steps=4 format=3 uid="uid://bsueltvavfvd7"]
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=7 format=3 uid="uid://bsueltvavfvd7"]
 
 [ext_resource type="Script" path="res://Data/choice_data.gd" id="1_tupdo"]
 [ext_resource type="Resource" uid="uid://1kebnr7oi3b3" path="res://Data/Prologue/prologue4.tres" id="2_250ni"]
 [ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_brjf2"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="4_en8sv"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="5_ait5e"]
+
+[sub_resource type="Resource" id="Resource_pbmfl"]
+script = ExtResource("4_en8sv")
+text = "Though they only sought to bleed the nation of warriors, in their desperation the wizards made a mistake. Following the first lair, countless others appeared across the world, each bringing ruin to the surrounding lands. It took several generations and the combined efforts of many nations to retake the lost lands and destroy most of the lairs."
+requirements = Array[ExtResource("5_ait5e")]([])
 
 [resource]
 script = ExtResource("2_brjf2")
-text = "Though they only sought to bleed the nation of warriors, in their desperation the wizards made a mistake. Following the first lair, countless others appeared across the world, each bringing ruin to the surrounding lands. It took several generations and the combined efforts of many nations to retake the lost lands and destroy most of the lairs."
+texts = Array[ExtResource("4_en8sv")]([SubResource("Resource_pbmfl")])
 choices = Array[ExtResource("1_tupdo")]([])
 next_entry = ExtResource("2_250ni")
 sequence_tag = "prologue"

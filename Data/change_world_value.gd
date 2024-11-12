@@ -13,7 +13,7 @@ func apply() -> void:
 		printerr("Change World Value not initialized properly!")
 		return
 	
-	# TODO: Add checks for type safety
+	# TODO (REACH): Add checks for type safety
 	var typed_value
 	match type:
 		TYPE_BOOL:

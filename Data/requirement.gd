@@ -1,15 +1,15 @@
-class_name ChoiceCondition
+class_name Requirement
 extends Resource
 
-enum Condition { EQUALS, GREATER_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN, LESS_THAN_OR_EQUALS }
+enum Operator { EQUALS, GREATER_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN, LESS_THAN_OR_EQUALS }
 
 @export var key: String
 @export var value: String
 @export var type: Variant.Type
-@export var condition: Condition
+@export var operator: Operator
 
 func is_fulfilled() -> bool:
-	# TODO: Add checks for type safety
+	# TODO (REACH): Add checks for type safety
 	var typed_value
 	match type:
 		TYPE_BOOL:
@@ -21,16 +21,16 @@ func is_fulfilled() -> bool:
 		TYPE_STRING:
 			typed_value = value
 	
-	match condition:
-		Condition.EQUALS:
+	match operator:
+		Operator.EQUALS:
 			return JournalManager.world[key] == typed_value
-		Condition.GREATER_THAN:
+		Operator.GREATER_THAN:
 			return JournalManager.world[key] > typed_value
-		Condition.GREATER_THAN_OR_EQUALS:
+		Operator.GREATER_THAN_OR_EQUALS:
 			return JournalManager.world[key] >= typed_value
-		Condition.LESS_THAN:
+		Operator.LESS_THAN:
 			return JournalManager.world[key] < typed_value
-		Condition.LESS_THAN_OR_EQUALS:
+		Operator.LESS_THAN_OR_EQUALS:
 			return JournalManager.world[key] <= typed_value
 		_:
 			return false

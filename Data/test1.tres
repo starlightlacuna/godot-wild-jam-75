@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ChoiceData" load_steps=4 format=3 uid="uid://p2tyfddhbayc"]
 
 [ext_resource type="Script" path="res://Data/choice_data.gd" id="1_kukel"]
-[ext_resource type="Script" path="res://Data/choice_condition.gd" id="1_mse8e"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="1_mse8e"]
 [ext_resource type="Script" path="res://Data/choice_effect.gd" id="2_jx2ig"]
 
 [resource]

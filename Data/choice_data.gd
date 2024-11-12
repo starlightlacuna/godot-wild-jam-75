@@ -10,6 +10,15 @@ static var Tags: Dictionary = {
 }
 
 @export var choice_tag: String
+
+## Text that will be appended to the journal entry when the player selects this choice.
 @export var text: String
+
+## Text that is shown in the ChoiceButton.
+@export var button_text: String
+
+## Effects on the game world that will be applied when the player selects this choice.
 @export var effects: Array[ChoiceEffect]
-@export var conditions: Array[ChoiceCondition]
+
+## Conditions that must be fulfilled before this choice will be presented to the player.
+@export var requirements: Array[Requirement]

@@ -26,7 +26,10 @@ func append_choice_text(p_text: String) -> void:
 
 func initialize(p_text: String = "", p_text_speed: float = 0.0) -> void:
 	if not p_text.is_empty():
-		set_text(p_text)
+		# TODO: Check the Godot repository issues for RichTextLabel.set_text() 
+		# not clearing the tag stack prior to setting the text.
+		clear()
+		append_text(p_text)
 		set_visible_characters(0)
 	if p_text_speed > 0.0:
 		text_speed = p_text_speed

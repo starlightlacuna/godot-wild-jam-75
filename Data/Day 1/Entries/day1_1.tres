@@ -1,9 +1,21 @@
-[gd_resource type="Resource" script_class="JournalEntryData" load_steps=3 format=3 uid="uid://bvfa6wlqyu7gk"]
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=9 format=3 uid="uid://bvfa6wlqyu7gk"]
 
 [ext_resource type="Script" path="res://Data/choice_data.gd" id="1_cm2xq"]
+[ext_resource type="Resource" uid="uid://dm4klkgqvv15j" path="res://Data/Day 1/Choices/day1_excited.tres" id="2_rlbek"]
 [ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_y0l8c"]
+[ext_resource type="Resource" uid="uid://die0v565yua2o" path="res://Data/Day 1/Choices/day1_nervous.tres" id="3_l2wa2"]
+[ext_resource type="Resource" uid="uid://cftthc8brjq36" path="res://Data/Day 1/Entries/day1_2.tres" id="4_jo1py"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="5_s7vi4"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="6_rjy6o"]
+
+[sub_resource type="Resource" id="Resource_a8k72"]
+script = ExtResource("5_s7vi4")
+text = "Tomorrow's the first day! I've been dreaming of this my whole life. I'm so "
+requirements = Array[ExtResource("6_rjy6o")]([])
 
 [resource]
 script = ExtResource("2_y0l8c")
-text = ""
-choices = Array[ExtResource("1_cm2xq")]([])
+texts = Array[ExtResource("5_s7vi4")]([SubResource("Resource_a8k72")])
+choices = Array[ExtResource("1_cm2xq")]([ExtResource("2_rlbek"), ExtResource("3_l2wa2")])
+next_entry = ExtResource("4_jo1py")
+sequence_tag = "day1"

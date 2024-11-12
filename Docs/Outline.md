@@ -12,3 +12,7 @@ This is a short introduction to the world. It has no options to choose from.
 
 ## Day 1
 
+1. "Tomorrow's the first day! I've been dreaming of this my whole life. I'm so "
+   1. excited! [Attitude +1]
+   2. nervous... [Attitude -1]
+2. %if Attitude > 0% I can't wait to go to my first class. [if Attitude < 0] I hope that I don't embarrass myself.
