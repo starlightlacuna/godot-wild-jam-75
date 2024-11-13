@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="JournalEntryData" load_steps=9 format=3 uid="uid://cftthc8brjq36"]
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=10 format=3 uid="uid://cftthc8brjq36"]
 
 [ext_resource type="Script" path="res://Data/choice_data.gd" id="1_vufwc"]
+[ext_resource type="Resource" uid="uid://1g3vcjfuboew" path="res://Data/Day 1/Entries/day1_3.tres" id="2_u36ev"]
 [ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_x2efn"]
 [ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_k83dn"]
 [ext_resource type="Script" path="res://Data/requirement.gd" id="4_g3kcc"]
@@ -33,4 +34,5 @@ requirements = Array[ExtResource("4_g3kcc")]([SubResource("Resource_qsw0v")])
 script = ExtResource("2_x2efn")
 texts = Array[ExtResource("3_k83dn")]([SubResource("Resource_dy56e"), SubResource("Resource_46dv4")])
 choices = Array[ExtResource("1_vufwc")]([])
+next_entry = ExtResource("2_u36ev")
 sequence_tag = "day1"

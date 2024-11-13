@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=9 format=3 uid="uid://1g3vcjfuboew"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_6ee6y"]
+[ext_resource type="Resource" uid="uid://bkqr0t2gld2d4" path="res://Data/Day 1/Choices/day1_annoying.tres" id="2_bm2t7"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_khguh"]
+[ext_resource type="Resource" uid="uid://bcg3xa6bh24h5" path="res://Data/Day 1/Choices/day1_cool.tres" id="3_foufm"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_unq4n"]
+[ext_resource type="Resource" uid="uid://8uaodmqidylv" path="res://Data/Day 1/Entries/day1_4.tres" id="4_bwi0r"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="4_l7wfj"]
+
+[sub_resource type="Resource" id="Resource_dy56e"]
+script = ExtResource("3_unq4n")
+text = "The other day I was at the market and saw my friend Sam. Even though we're not students yet, he's already putting in an order for an arming blade at the swordsmith! He's about the same age as me, but he's always been stronger and faster. Everyone thinks he'll be a great ranger and he's basically guaranteed to be accepted into the academy. I think he's "
+requirements = Array[ExtResource("4_l7wfj")]([])
+
+[resource]
+script = ExtResource("2_khguh")
+texts = Array[ExtResource("3_unq4n")]([SubResource("Resource_dy56e")])
+choices = Array[ExtResource("1_6ee6y")]([ExtResource("2_bm2t7"), ExtResource("3_foufm")])
+next_entry = ExtResource("4_bwi0r")
+sequence_tag = "day1"

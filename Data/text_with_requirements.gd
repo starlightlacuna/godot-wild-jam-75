@@ -1,7 +1,7 @@
 class_name TextWithRequirements
 extends Resource
 
-@export var text: String
+@export_multiline var text: String
 @export var requirements: Array[Requirement]
 
 func are_requirements_fulfilled() -> bool:

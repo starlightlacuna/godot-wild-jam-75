@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cncf0vy3hh8k1"]
+[gd_scene load_steps=9 format=3 uid="uid://cncf0vy3hh8k1"]
 
 [ext_resource type="Script" path="res://journal.gd" id="1_i0mx5"]
 [ext_resource type="FontFile" uid="uid://l3y6ih5w8yke" path="res://Assets/Fonts/vividly/Vividly-Regular.otf" id="1_saxwu"]
-[ext_resource type="Resource" uid="uid://g0i66ygu6tu7" path="res://Data/Prologue/prologue5.tres" id="3_mx54i"]
 [ext_resource type="Script" path="res://journal_label.gd" id="3_tdy8e"]
+[ext_resource type="Texture2D" uid="uid://u078a8s5bj8l" path="res://Assets/book.png" id="3_yxov7"]
 [ext_resource type="PackedScene" uid="uid://df452r7swku13" path="res://UI/choice_button.tscn" id="4_euoka"]
 [ext_resource type="Texture2D" uid="uid://b500siv7pq5d5" path="res://icon.svg" id="5_q54pe"]
 [ext_resource type="Script" path="res://sequence_button.gd" id="5_s77bq"]
@@ -11,22 +11,12 @@
 [sub_resource type="Theme" id="Theme_5ffud"]
 Button/font_sizes/font_size = 56
 Button/fonts/font = ExtResource("1_saxwu")
+RichTextLabel/colors/default_color = Color(0.0936841, 0.129262, 0.243799, 1)
 RichTextLabel/font_sizes/normal_font_size = 56
 RichTextLabel/fonts/normal_font = ExtResource("1_saxwu")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hfd7"]
-bg_color = Color(0.720701, 0.656655, 0.571713, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.00351917, 0.00351917, 0.00351916, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-
-[node name="Journal" type="CenterContainer"]
+[node name="Journal" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,19 +24,37 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5ffud")
 script = ExtResource("1_i0mx5")
-journal_entry_override = ExtResource("3_mx54i")
+metadata/_edit_lock_ = true
 
-[node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(960, 540)
+[node name="BookBackground" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3hfd7")
+offset_left = -840.0
+offset_top = -24.0
+offset_right = 841.0
+offset_bottom = 921.0
+texture = ExtResource("3_yxov7")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_lock_ = true
 
-[node name="JournalEntryContainer" type="VBoxContainer" parent="."]
-visible = false
-custom_minimum_size = Vector2(880, 460)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 90
+
+[node name="JournalEntryContainer" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="EntryLabel" type="RichTextLabel" parent="JournalEntryContainer"]
+[node name="EntryLabel" type="RichTextLabel" parent="MarginContainer/JournalEntryContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -57,70 +65,73 @@ visible_characters_behavior = 1
 script = ExtResource("3_tdy8e")
 text_speed = 120.0
 
-[node name="TextAdvanceTimer" type="Timer" parent="JournalEntryContainer/EntryLabel"]
+[node name="TextAdvanceTimer" type="Timer" parent="MarginContainer/JournalEntryContainer/EntryLabel"]
 wait_time = 0.1
 one_shot = true
 
-[node name="ChoiceContainer" type="HFlowContainer" parent="JournalEntryContainer"]
+[node name="ChoiceContainer" type="HFlowContainer" parent="MarginContainer/JournalEntryContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="ChoiceButton" parent="JournalEntryContainer/ChoiceContainer" instance=ExtResource("4_euoka")]
+[node name="ChoiceButton" parent="MarginContainer/JournalEntryContainer/ChoiceContainer" instance=ExtResource("4_euoka")]
 layout_mode = 2
 
-[node name="IntersequenceContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(880, 460)
+[node name="IntersequenceContainer" type="HBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
-[node name="SequenceButtonContainer" type="VBoxContainer" parent="IntersequenceContainer"]
+[node name="SequenceButtonContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 size_flags_stretch_ratio = 3.0
 
-[node name="PrologueButton" type="Button" parent="IntersequenceContainer/SequenceButtonContainer"]
+[node name="PrologueButton" type="Button" parent="MarginContainer/IntersequenceContainer/SequenceButtonContainer"]
 layout_mode = 2
 text = "Prologue"
 script = ExtResource("5_s77bq")
 sequence_tag = "prologue"
 
-[node name="Day1Button" type="Button" parent="IntersequenceContainer/SequenceButtonContainer"]
+[node name="Day1Button" type="Button" parent="MarginContainer/IntersequenceContainer/SequenceButtonContainer"]
 layout_mode = 2
 text = "Day 1"
 script = ExtResource("5_s77bq")
 sequence_tag = "day1"
 
-[node name="Day2Button" type="Button" parent="IntersequenceContainer/SequenceButtonContainer"]
+[node name="Day2Button" type="Button" parent="MarginContainer/IntersequenceContainer/SequenceButtonContainer"]
 layout_mode = 2
 text = "Day 2"
 script = ExtResource("5_s77bq")
 sequence_tag = "day2"
 
-[node name="Day3Button" type="Button" parent="IntersequenceContainer/SequenceButtonContainer"]
+[node name="Day3Button" type="Button" parent="MarginContainer/IntersequenceContainer/SequenceButtonContainer"]
 layout_mode = 2
 text = "Day 3"
 script = ExtResource("5_s77bq")
 sequence_tag = "day3"
 
-[node name="StatsContainer" type="VBoxContainer" parent="IntersequenceContainer"]
+[node name="StatsContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 size_flags_stretch_ratio = 2.0
 
-[node name="TextureRect" type="TextureRect" parent="IntersequenceContainer/StatsContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
 layout_mode = 2
 texture = ExtResource("5_q54pe")
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="IntersequenceContainer/StatsContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
 layout_mode = 2
 
-[node name="ProgressBar2" type="ProgressBar" parent="IntersequenceContainer/StatsContainer"]
+[node name="ProgressBar2" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
 layout_mode = 2
 
-[node name="ProgressBar3" type="ProgressBar" parent="IntersequenceContainer/StatsContainer"]
+[node name="ProgressBar3" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
 layout_mode = 2
 
-[connection signal="donezo" from="JournalEntryContainer/EntryLabel" to="." method="_on_entry_label_donezo"]
-[connection signal="timeout" from="JournalEntryContainer/EntryLabel/TextAdvanceTimer" to="JournalEntryContainer/EntryLabel" method="_on_text_advance_timer_timeout"]
+[connection signal="donezo" from="MarginContainer/JournalEntryContainer/EntryLabel" to="." method="_on_entry_label_donezo"]
+[connection signal="timeout" from="MarginContainer/JournalEntryContainer/EntryLabel/TextAdvanceTimer" to="MarginContainer/JournalEntryContainer/EntryLabel" method="_on_text_advance_timer_timeout"]

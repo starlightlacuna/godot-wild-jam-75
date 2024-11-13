@@ -1,5 +1,5 @@
 class_name Journal
-extends CenterContainer
+extends Control
 
 enum Mode { JOURNAL_ENTRY, INTERSEQUENCE }
 
@@ -7,8 +7,8 @@ enum Mode { JOURNAL_ENTRY, INTERSEQUENCE }
 
 @onready var choice_container: HFlowContainer = %ChoiceContainer
 @onready var entry_label: JournalLabel = %EntryLabel
-@onready var journal_entry_container: VBoxContainer = $JournalEntryContainer
-@onready var intersequence_container: HBoxContainer = $IntersequenceContainer
+@onready var journal_entry_container: VBoxContainer = %JournalEntryContainer
+@onready var intersequence_container: HBoxContainer = %IntersequenceContainer
 @onready var sequence_button_container: VBoxContainer = %SequenceButtonContainer
 
 const choice_button_scene: PackedScene = preload("res://UI/choice_button.tscn")
@@ -81,10 +81,13 @@ func _change_mode(mode: Mode) -> void:
 					sequence_button.hide()
 
 func _get_current_entry_text() -> String:
-	var text: String
+	var text: String = ""
 	for text_with_requirements in current_entry.texts:
+		if text_with_requirements.requirements.is_empty():
+			text += text_with_requirements.text
+			continue
 		if text_with_requirements.are_requirements_fulfilled():
-			text = text_with_requirements.text
+			text += text_with_requirements.text
 			break
 	return text
 
@@ -104,6 +107,8 @@ func clear_choices() -> void:
 
 func show_choices() -> void:
 	# By default, we add a continue button so we can load the next entry in the sequence.
+	# TODO: Add a flag to determine whether to show a continue button or to automatically
+	# append the next entry to the journal label.
 	if current_entry.choices.is_empty():
 		var continue_button: ChoiceButton = choice_button_scene.instantiate()
 		continue_button.initialize(continue_button_data)

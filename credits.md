@@ -1,0 +1,1 @@
+"EPIC-Collection book" by Melissa Krautheim licensed under CC0 1.0 Universal (https://creativecommons.org/publicdomain/zero/1.0/). Available via OpenGameArt (https://opengameart.org/content/epic-collection-book)

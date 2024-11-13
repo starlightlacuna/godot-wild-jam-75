@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ChoiceData" load_steps=6 format=3 uid="uid://bcg3xa6bh24h5"]
+
+[ext_resource type="Script" path="res://Data/choice_effect.gd" id="1_kshw1"]
+[ext_resource type="Script" path="res://Data/change_world_value.gd" id="2_3i4vb"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="2_5hxq7"]
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="3_csh4q"]
+
+[sub_resource type="Resource" id="Resource_0x8ml"]
+script = ExtResource("2_3i4vb")
+key = "player.camaraderie"
+value = "1"
+type = 2
+operation = 1
+
+[resource]
+script = ExtResource("3_csh4q")
+choice_tag = "DAY1_COOL"
+text = "cool."
+button_text = "Cool"
+effects = Array[ExtResource("1_kshw1")]([SubResource("Resource_0x8ml")])
+requirements = Array[ExtResource("2_5hxq7")]([])

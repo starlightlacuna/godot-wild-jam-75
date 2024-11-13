@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=6 format=3 uid="uid://cugmur5u86iq8"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_m7met"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="4_jqh76"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="5_hcxgi"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="6_kumck"]
+
+[sub_resource type="Resource" id="Resource_dy56e"]
+script = ExtResource("5_hcxgi")
+text = "Anyway, I have to go to bed. The exam starts an hour after sunrise, so I need all the rest I can get!"
+requirements = Array[ExtResource("6_kumck")]([])
+
+[resource]
+script = ExtResource("4_jqh76")
+texts = Array[ExtResource("5_hcxgi")]([SubResource("Resource_dy56e")])
+choices = Array[ExtResource("1_m7met")]([])
+sequence_tag = "day1"
