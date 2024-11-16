@@ -19,6 +19,7 @@ const choice_button_scene: PackedScene = preload("res://UI/choice_button.tscn")
 const continue_button_data: ChoiceData = preload("res://Data/continue.tres")
 
 var choice_made: bool = false
+var choice_index: int = 0
 var current_entry: JournalEntryData
 
 func _ready() -> void:
@@ -50,6 +51,8 @@ func _on_entry_label_donezo() -> void:
 func _on_choice_button_pressed(choice_data: ChoiceData) -> void:
 	# TODO (REACH): Add choice selection animation.
 	_clear_choices()
+	var choice_history: Array = JournalManager.sequences[current_entry.sequence_tag].choice_history
+	choice_history.append(choice_data)
 	entry_label.append_choice_text(choice_data.text + "\n")
 	JournalManager.apply_choice_effects(choice_data)
 	choice_made = true
@@ -66,6 +69,7 @@ func _on_continue_button_pressed() -> void:
 
 func _on_sequence_button_pressed(sequence_tag: String) -> void:
 	current_entry = JournalManager.get_sequence_start(sequence_tag)
+	choice_index = 0
 	_start_current_entry()
 
 func _change_mode(mode: Mode) -> void:
@@ -126,6 +130,15 @@ func _show_choices() -> void:
 		return
 		
 	var choices: Array[ChoiceData] = current_entry.choices
+	if JournalManager.sequences[current_entry.sequence_tag].complete:
+		var choice_history: Array = JournalManager.sequences[current_entry.sequence_tag].choice_history
+		for choice_data in choices:
+			if choice_data == choice_history[choice_index]:
+				choice_index += 1
+				entry_label.append_choice_text(choice_data.text + "\n")
+				choice_made = true
+				return
+		
 	for choice_data in choices:
 		var data: ChoiceData = choice_data
 		var new_button: ChoiceButton = choice_button_scene.instantiate()

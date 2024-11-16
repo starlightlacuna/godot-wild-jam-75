@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cncf0vy3hh8k1"]
+[gd_scene load_steps=10 format=3 uid="uid://cncf0vy3hh8k1"]
 
 [ext_resource type="Script" path="res://journal.gd" id="1_i0mx5"]
 [ext_resource type="FontFile" uid="uid://l3y6ih5w8yke" path="res://Assets/Fonts/vividly/Vividly-Regular.otf" id="1_saxwu"]
+[ext_resource type="Resource" uid="uid://g0i66ygu6tu7" path="res://Data/Prologue/prologue5.tres" id="3_n6brh"]
 [ext_resource type="Script" path="res://journal_label.gd" id="3_tdy8e"]
 [ext_resource type="Texture2D" uid="uid://u078a8s5bj8l" path="res://Assets/book.png" id="3_yxov7"]
 [ext_resource type="PackedScene" uid="uid://df452r7swku13" path="res://UI/choice_button.tscn" id="4_euoka"]
@@ -24,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5ffud")
 script = ExtResource("1_i0mx5")
+journal_entry_override = ExtResource("3_n6brh")
 camaraderie_min_color = Color(0.372549, 0.568627, 0.219608, 1)
 camaraderie_max_color = Color(0.415686, 0.219608, 0.568627, 1)
 metadata/_edit_lock_ = true
