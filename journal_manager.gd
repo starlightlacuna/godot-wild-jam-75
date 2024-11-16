@@ -11,22 +11,22 @@ var sequences: Dictionary = {
 		"start": preload("res://Data/Prologue/prologue1.tres"),
 		"complete": false,
 		"choice_history": [],
-		"next_sequence": "day1"
+		"next_sequence": "preparations"
 	},
-	"day1": {
+	"preparations": {
 		"start": preload("res://Data/Day 1/Entries/day1_1.tres"),
 		"complete": false,
 		"choice_history": [],
-		"next_sequence": "day2"
+		"next_sequence": "entrance_exam"
 	},
-	"day2": {
-		"start": null,
+	"entrance_exam": {
+		"start": preload("res://Data/Exam/exam1.tres"),
 		"complete": false,
 		"choice_history": [],
-		"next_sequence": "day3"
+		"next_sequence": "expedition"
 	},
-	"day3": {
-		"start": null,
+	"expedition": {
+		"start": preload("res://Data/Expedition/expedition1.tres"),
 		"complete": false,
 		"choice_history": [],
 		"next_sequence": ""

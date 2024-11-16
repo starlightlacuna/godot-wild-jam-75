@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=12 format=3 uid="uid://bl234ecv80lfd"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_o03wo"]
+[ext_resource type="Resource" uid="uid://byl3r4wyustrq" path="res://Data/Exam/exam5.tres" id="2_8uu73"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_mnvb5"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_jjyts"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="5_nojvk"]
+
+[sub_resource type="Resource" id="Resource_knkca"]
+script = ExtResource("5_nojvk")
+key = "player.camaraderie"
+value = "0"
+type = 2
+operator = 2
+
+[sub_resource type="Resource" id="Resource_ghhe2"]
+script = ExtResource("3_jjyts")
+text = "I helped Sam off the ground and thanked him."
+requirements = Array[ExtResource("5_nojvk")]([SubResource("Resource_knkca")])
+world_key = "player.camaraderie"
+
+[sub_resource type="Resource" id="Resource_ar3f7"]
+script = ExtResource("5_nojvk")
+key = "player.camaraderie"
+value = "0"
+type = 2
+operator = 0
+
+[sub_resource type="Resource" id="Resource_gcno6"]
+script = ExtResource("3_jjyts")
+text = "Sam helped me off the ground."
+requirements = Array[ExtResource("5_nojvk")]([SubResource("Resource_ar3f7")])
+world_key = "player.camaraderie"
+
+[sub_resource type="Resource" id="Resource_kwfhq"]
+script = ExtResource("5_nojvk")
+key = "player.camaraderie"
+value = "0"
+type = 2
+operator = 3
+
+[sub_resource type="Resource" id="Resource_fbvhh"]
+script = ExtResource("3_jjyts")
+text = "Sam offered to help me off the ground, but I waved his hand away."
+requirements = Array[ExtResource("5_nojvk")]([SubResource("Resource_kwfhq")])
+world_key = "player.camaraderie"
+
+[resource]
+script = ExtResource("2_mnvb5")
+texts = Array[ExtResource("3_jjyts")]([SubResource("Resource_ghhe2"), SubResource("Resource_gcno6"), SubResource("Resource_fbvhh")])
+choices = Array[ExtResource("1_o03wo")]([])
+next_entry = ExtResource("2_8uu73")
+sequence_tag = "entrance_exam"

@@ -4,6 +4,10 @@ extends Control
 enum Mode { JOURNAL_ENTRY, INTERSEQUENCE }
 
 @export var journal_entry_override: JournalEntryData
+@export var attitude_min_color: Color = Color("B4251C")
+@export var attitude_max_color: Color = Color("1CACB4")
+@export var camaraderie_min_color: Color = Color("4E782D")
+@export var camaraderie_max_color: Color = Color("8A50B9")
 
 @onready var choice_container: HFlowContainer = %ChoiceContainer
 @onready var entry_label: JournalLabel = %EntryLabel
@@ -21,7 +25,7 @@ func _ready() -> void:
 	for child in sequence_button_container.get_children():
 		var sequence_button: SequenceButton = child
 		sequence_button.pressed.connect(_on_sequence_button_pressed.bind(sequence_button.sequence_tag))
-	clear_choices()
+	_clear_choices()
 	if journal_entry_override:
 		current_entry = journal_entry_override
 	else:
@@ -41,17 +45,17 @@ func _on_entry_label_donezo() -> void:
 			pass
 		choice_made = false
 	else:
-		show_choices()
+		_show_choices()
 
 func _on_choice_button_pressed(choice_data: ChoiceData) -> void:
 	# TODO (REACH): Add choice selection animation.
-	clear_choices()
+	_clear_choices()
 	entry_label.append_choice_text(choice_data.text + "\n")
 	JournalManager.apply_choice_effects(choice_data)
 	choice_made = true
 
 func _on_continue_button_pressed() -> void:
-	clear_choices()
+	_clear_choices()
 	if current_entry.next_entry:
 		current_entry = current_entry.next_entry
 		_start_current_entry()
@@ -80,6 +84,13 @@ func _change_mode(mode: Mode) -> void:
 				else:
 					sequence_button.hide()
 
+func _clear_entry_label() -> void:
+	entry_label.clear()
+
+func _clear_choices() -> void:
+	for child in choice_container.get_children():
+		child.queue_free()
+
 func _get_current_entry_text() -> String:
 	var text: String = ""
 	for text_with_requirements in current_entry.texts:
@@ -87,25 +98,23 @@ func _get_current_entry_text() -> String:
 			text += text_with_requirements.text
 			continue
 		if text_with_requirements.are_requirements_fulfilled():
-			text += text_with_requirements.text
+			var key: String = text_with_requirements.world_key
+			var value: int = JournalManager.world[key]
+			var color_min: Color
+			var color_max: Color
+			if key == "player.attitude":
+				color_min = attitude_min_color
+				color_max = attitude_max_color
+			else:
+				color_min = camaraderie_min_color
+				color_max = camaraderie_max_color
+			var lerp_weight: float = clamp((float(value) + 4.0) / 8.0, 0.0, 8.0)
+			var color_string: String = color_min.lerp(color_max, lerp_weight).to_html(false)
+			text += "[color=#%s]%s[/color]" % [color_string, text_with_requirements.text]
 			break
 	return text
 
-func _start_current_entry() -> void:
-	# TODO: Replay the player's choice history.
-	_change_mode(Mode.JOURNAL_ENTRY)
-	var text: String = _get_current_entry_text()
-	entry_label.initialize(text)
-	entry_label.start_text_advance()
-
-func _clear_entry_label() -> void:
-	entry_label.clear()
-
-func clear_choices() -> void:
-	for child in choice_container.get_children():
-		child.queue_free()
-
-func show_choices() -> void:
+func _show_choices() -> void:
 	# By default, we add a continue button so we can load the next entry in the sequence.
 	# TODO: Add a flag to determine whether to show a continue button or to automatically
 	# append the next entry to the journal label.
@@ -123,4 +132,10 @@ func show_choices() -> void:
 		new_button.initialize(data)
 		new_button.pressed.connect(_on_choice_button_pressed.bind(data))
 		choice_container.add_child(new_button)
-	
+
+func _start_current_entry() -> void:
+	# TODO: Replay the player's choice history.
+	_change_mode(Mode.JOURNAL_ENTRY)
+	var text: String = _get_current_entry_text()
+	entry_label.initialize(text)
+	entry_label.start_text_advance()

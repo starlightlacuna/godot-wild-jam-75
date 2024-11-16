@@ -24,6 +24,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5ffud")
 script = ExtResource("1_i0mx5")
+camaraderie_min_color = Color(0.372549, 0.568627, 0.219608, 1)
+camaraderie_max_color = Color(0.415686, 0.219608, 0.568627, 1)
 metadata/_edit_lock_ = true
 
 [node name="BookBackground" type="TextureRect" parent="."]
@@ -95,25 +97,26 @@ text = "Prologue"
 script = ExtResource("5_s77bq")
 sequence_tag = "prologue"
 
-[node name="Day1Button" type="Button" parent="MarginContainer/IntersequenceContainer/SequenceButtonContainer"]
+[node name="PreparationsButton" type="Button" parent="MarginContainer/IntersequenceContainer/SequenceButtonContainer"]
 layout_mode = 2
-text = "Day 1"
+text = "Preparations"
 script = ExtResource("5_s77bq")
-sequence_tag = "day1"
+sequence_tag = "preparations"
 
-[node name="Day2Button" type="Button" parent="MarginContainer/IntersequenceContainer/SequenceButtonContainer"]
+[node name="EntranceExamButton" type="Button" parent="MarginContainer/IntersequenceContainer/SequenceButtonContainer"]
 layout_mode = 2
-text = "Day 2"
+text = "The Exam"
 script = ExtResource("5_s77bq")
-sequence_tag = "day2"
+sequence_tag = "entrance_exam"
 
-[node name="Day3Button" type="Button" parent="MarginContainer/IntersequenceContainer/SequenceButtonContainer"]
+[node name="ExpeditionButton" type="Button" parent="MarginContainer/IntersequenceContainer/SequenceButtonContainer"]
 layout_mode = 2
-text = "Day 3"
+text = "The Expedition"
 script = ExtResource("5_s77bq")
-sequence_tag = "day3"
+sequence_tag = "expedition"
 
 [node name="StatsContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4

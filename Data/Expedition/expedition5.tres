@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=11 format=3 uid="uid://da8oj7m72gbmu"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_1ul14"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_eqo0t"]
+[ext_resource type="Resource" uid="uid://bj44b181exws7" path="res://Data/Expedition/expedition6.tres" id="2_s0pah"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_ca418"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="4_05xa0"]
+
+[sub_resource type="Resource" id="Resource_bej2n"]
+script = ExtResource("3_ca418")
+text = "At one point, Sam was knocked prone and the monster bared its fangs to strike. "
+requirements = Array[ExtResource("4_05xa0")]([])
+world_key = ""
+
+[sub_resource type="Resource" id="Resource_qw8vg"]
+script = ExtResource("4_05xa0")
+key = "player.camaraderie"
+value = "1"
+type = 2
+operator = 1
+
+[sub_resource type="Resource" id="Resource_120lu"]
+script = ExtResource("3_ca418")
+text = "I pulled him out of the way just in time."
+requirements = Array[ExtResource("4_05xa0")]([SubResource("Resource_qw8vg")])
+world_key = "player.camaraderie"
+
+[sub_resource type="Resource" id="Resource_sp2cw"]
+script = ExtResource("4_05xa0")
+key = "player.camaraderie"
+value = "1"
+type = 2
+operator = 4
+
+[sub_resource type="Resource" id="Resource_ycflg"]
+script = ExtResource("3_ca418")
+text = "I couldn't get to him fast enough so he got bit."
+requirements = Array[ExtResource("4_05xa0")]([SubResource("Resource_sp2cw")])
+world_key = "player.camaraderie"
+
+[resource]
+script = ExtResource("2_eqo0t")
+texts = Array[ExtResource("3_ca418")]([SubResource("Resource_bej2n"), SubResource("Resource_120lu"), SubResource("Resource_ycflg")])
+choices = Array[ExtResource("1_1ul14")]([])
+next_entry = ExtResource("2_s0pah")
+sequence_tag = "expedition"

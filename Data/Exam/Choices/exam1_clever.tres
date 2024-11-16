@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ChoiceData" load_steps=6 format=3 uid="uid://dmi7rvqtsmady"]
+
+[ext_resource type="Script" path="res://Data/choice_effect.gd" id="1_6vumu"]
+[ext_resource type="Script" path="res://Data/change_world_value.gd" id="2_nb07r"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="3_o43kj"]
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="4_hjioh"]
+
+[sub_resource type="Resource" id="Resource_xaipy"]
+script = ExtResource("2_nb07r")
+key = "player.camaraderie"
+value = "1"
+type = 2
+operation = 1
+
+[resource]
+script = ExtResource("4_hjioh")
+choice_tag = "EXAM1_SMART"
+text = "clever and allowed both of us to pass the exam."
+button_text = "Clever"
+effects = Array[ExtResource("1_6vumu")]([SubResource("Resource_xaipy")])
+requirements = Array[ExtResource("3_o43kj")]([])

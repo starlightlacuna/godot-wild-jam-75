@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=7 format=3 uid="uid://bj44b181exws7"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_q64ud"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_n2s6g"]
+[ext_resource type="Resource" uid="uid://b5lehahjmlhe1" path="res://Data/Expedition/expedition7.tres" id="2_yaawm"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_musm6"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="4_q3vds"]
+
+[sub_resource type="Resource" id="Resource_bej2n"]
+script = ExtResource("3_musm6")
+text = "We wouldn't have survived had a ranger not come to save us. She slew the monster and protected us until all the monsters were slain."
+requirements = Array[ExtResource("4_q3vds")]([])
+world_key = ""
+
+[resource]
+script = ExtResource("2_n2s6g")
+texts = Array[ExtResource("3_musm6")]([SubResource("Resource_bej2n")])
+choices = Array[ExtResource("1_q64ud")]([])
+next_entry = ExtResource("2_yaawm")
+sequence_tag = "expedition"

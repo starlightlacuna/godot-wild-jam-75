@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=11 format=3 uid="uid://cfuv1ns8xlk0b"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_55wbv"]
+[ext_resource type="Resource" uid="uid://d4cuqa4qp38t" path="res://Data/Exam/exam2.tres" id="2_4fko5"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_j55rf"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_a8kft"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="4_n4n4p"]
+
+[sub_resource type="Resource" id="Resource_o423t"]
+script = ExtResource("3_a8kft")
+text = "I just barely passed the entrance exam. First, they made us find the testing grounds in the middle of the forest surrounding the academy. We were given an hour, and a lot of the other applicants didn't make it in time. "
+requirements = Array[ExtResource("4_n4n4p")]([])
+world_key = ""
+
+[sub_resource type="Resource" id="Resource_qldis"]
+script = ExtResource("4_n4n4p")
+key = "player.camaraderie"
+value = "0"
+type = 2
+operator = 3
+
+[sub_resource type="Resource" id="Resource_x8abj"]
+script = ExtResource("3_a8kft")
+text = "They were clearly not ranger material."
+requirements = Array[ExtResource("4_n4n4p")]([SubResource("Resource_qldis")])
+world_key = "player.camaraderie"
+
+[sub_resource type="Resource" id="Resource_l7nmk"]
+script = ExtResource("4_n4n4p")
+key = "player.camaraderie"
+value = "0"
+type = 2
+operator = 2
+
+[sub_resource type="Resource" id="Resource_37bd0"]
+script = ExtResource("3_a8kft")
+text = "Hopefully they train hard and try again next year."
+requirements = Array[ExtResource("4_n4n4p")]([SubResource("Resource_l7nmk")])
+world_key = "player.camaraderie"
+
+[resource]
+script = ExtResource("2_j55rf")
+texts = Array[ExtResource("3_a8kft")]([SubResource("Resource_o423t"), SubResource("Resource_x8abj"), SubResource("Resource_37bd0")])
+choices = Array[ExtResource("1_55wbv")]([])
+next_entry = ExtResource("2_4fko5")
+sequence_tag = "entrance_exam"

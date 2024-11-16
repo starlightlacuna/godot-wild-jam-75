@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=7 format=3 uid="uid://u1vdptr1s3o3"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_d71cn"]
+[ext_resource type="Resource" uid="uid://da8oj7m72gbmu" path="res://Data/Expedition/expedition5.tres" id="2_6maxl"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_uw2y2"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_eebew"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="4_pm8we"]
+
+[sub_resource type="Resource" id="Resource_bej2n"]
+script = ExtResource("3_eebew")
+text = "Sam rushed over and helped me to my feet. We fought the monster for what felt like an eternity. Our swords barely scratched its hide, but it slashed and clawed us whenever we made any mistake."
+requirements = Array[ExtResource("4_pm8we")]([])
+world_key = ""
+
+[resource]
+script = ExtResource("2_uw2y2")
+texts = Array[ExtResource("3_eebew")]([SubResource("Resource_bej2n")])
+choices = Array[ExtResource("1_d71cn")]([])
+next_entry = ExtResource("2_6maxl")
+sequence_tag = "expedition"

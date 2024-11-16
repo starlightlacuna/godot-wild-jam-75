@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=11 format=3 uid="uid://d4cuqa4qp38t"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_y4jwc"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_6fq6i"]
+[ext_resource type="Resource" uid="uid://chk0v0wtdb6os" path="res://Data/Exam/exam3.tres" id="2_okpk7"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_ksnlq"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="4_c2c01"]
+
+[sub_resource type="Resource" id="Resource_iihj2"]
+script = ExtResource("3_ksnlq")
+text = "Then, at the grounds, they gave us wooden swords and had us spar with [b][i]actual rangers[/i][/b]. To pass, we had to land a hit on them. There were over thirty of us and only five rangers, but it wasn't even close. I got scratched and bruised pretty bad. "
+requirements = Array[ExtResource("4_c2c01")]([])
+world_key = ""
+
+[sub_resource type="Resource" id="Resource_y0tc3"]
+script = ExtResource("4_c2c01")
+key = "player.attitude"
+value = "0"
+type = 2
+operator = 3
+
+[sub_resource type="Resource" id="Resource_s3w4d"]
+script = ExtResource("3_ksnlq")
+text = "I'm so weak!"
+requirements = Array[ExtResource("4_c2c01")]([SubResource("Resource_y0tc3")])
+world_key = "player.attitude"
+
+[sub_resource type="Resource" id="Resource_icmu8"]
+script = ExtResource("4_c2c01")
+key = "player.attitude"
+value = "0"
+type = 2
+operator = 2
+
+[sub_resource type="Resource" id="Resource_wckt4"]
+script = ExtResource("3_ksnlq")
+text = "Rangers are so strong!"
+requirements = Array[ExtResource("4_c2c01")]([SubResource("Resource_icmu8")])
+world_key = "player.attitude"
+
+[resource]
+script = ExtResource("2_6fq6i")
+texts = Array[ExtResource("3_ksnlq")]([SubResource("Resource_iihj2"), SubResource("Resource_s3w4d"), SubResource("Resource_wckt4")])
+choices = Array[ExtResource("1_y4jwc")]([])
+next_entry = ExtResource("2_okpk7")
+sequence_tag = "entrance_exam"

@@ -12,10 +12,11 @@
 script = ExtResource("5_s7vi4")
 text = "Tomorrow's the first day! I've been dreaming of this my whole life. I'm so "
 requirements = Array[ExtResource("6_rjy6o")]([])
+world_key = ""
 
 [resource]
 script = ExtResource("2_y0l8c")
 texts = Array[ExtResource("5_s7vi4")]([SubResource("Resource_a8k72")])
 choices = Array[ExtResource("1_cm2xq")]([ExtResource("2_rlbek"), ExtResource("3_l2wa2")])
 next_entry = ExtResource("4_jo1py")
-sequence_tag = "day1"
+sequence_tag = "preparations"

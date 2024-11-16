@@ -9,9 +9,10 @@
 script = ExtResource("5_hcxgi")
 text = "Anyway, I have to go to bed. The exam starts an hour after sunrise, so I need all the rest I can get!"
 requirements = Array[ExtResource("6_kumck")]([])
+world_key = ""
 
 [resource]
 script = ExtResource("4_jqh76")
 texts = Array[ExtResource("5_hcxgi")]([SubResource("Resource_dy56e")])
 choices = Array[ExtResource("1_m7met")]([])
-sequence_tag = "day1"
+sequence_tag = "preparations"

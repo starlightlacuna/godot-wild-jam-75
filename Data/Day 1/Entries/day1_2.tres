@@ -17,6 +17,7 @@ operator = 1
 script = ExtResource("3_k83dn")
 text = "I can't wait to go to my first class."
 requirements = Array[ExtResource("4_g3kcc")]([SubResource("Resource_8wmjs")])
+world_key = "player.attitude"
 
 [sub_resource type="Resource" id="Resource_qsw0v"]
 script = ExtResource("4_g3kcc")
@@ -29,10 +30,11 @@ operator = 3
 script = ExtResource("3_k83dn")
 text = "I hope that I don't embarrass myself."
 requirements = Array[ExtResource("4_g3kcc")]([SubResource("Resource_qsw0v")])
+world_key = "player.attitude"
 
 [resource]
 script = ExtResource("2_x2efn")
 texts = Array[ExtResource("3_k83dn")]([SubResource("Resource_dy56e"), SubResource("Resource_46dv4")])
 choices = Array[ExtResource("1_vufwc")]([])
 next_entry = ExtResource("2_u36ev")
-sequence_tag = "day1"
+sequence_tag = "preparations"

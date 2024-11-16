@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=11 format=3 uid="uid://bih38jc4exd2m"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_8kncs"]
+[ext_resource type="Resource" uid="uid://u1vdptr1s3o3" path="res://Data/Expedition/expedition4.tres" id="2_r4m1g"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_s82nk"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_f2agq"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="4_l4ylf"]
+
+[sub_resource type="Resource" id="Resource_36pge"]
+script = ExtResource("3_f2agq")
+text = "I was tending a fire when a monster jumped out from the underbrush. It sent me flying several meters away with its tails. "
+requirements = Array[ExtResource("4_l4ylf")]([])
+world_key = ""
+
+[sub_resource type="Resource" id="Resource_6w50b"]
+script = ExtResource("4_l4ylf")
+key = "player.attitude"
+value = "1"
+type = 2
+operator = 1
+
+[sub_resource type="Resource" id="Resource_u8k64"]
+script = ExtResource("3_f2agq")
+text = "I managed to roll as I landed, so I wasn't injured."
+requirements = Array[ExtResource("4_l4ylf")]([SubResource("Resource_6w50b")])
+world_key = "player.attitude"
+
+[sub_resource type="Resource" id="Resource_ru2t7"]
+script = ExtResource("4_l4ylf")
+key = "player.attitude"
+value = "1"
+type = 2
+operator = 4
+
+[sub_resource type="Resource" id="Resource_v6pfw"]
+script = ExtResource("3_f2agq")
+text = "I landed so hard that a few ribs broke."
+requirements = Array[ExtResource("4_l4ylf")]([SubResource("Resource_ru2t7")])
+world_key = "player.attitude"
+
+[resource]
+script = ExtResource("2_s82nk")
+texts = Array[ExtResource("3_f2agq")]([SubResource("Resource_36pge"), SubResource("Resource_u8k64"), SubResource("Resource_v6pfw")])
+choices = Array[ExtResource("1_8kncs")]([])
+next_entry = ExtResource("2_r4m1g")
+sequence_tag = "expedition"

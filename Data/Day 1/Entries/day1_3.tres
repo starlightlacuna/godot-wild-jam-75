@@ -12,10 +12,11 @@
 script = ExtResource("3_unq4n")
 text = "The other day I was at the market and saw my friend Sam. Even though we're not students yet, he's already putting in an order for an arming blade at the swordsmith! He's about the same age as me, but he's always been stronger and faster. Everyone thinks he'll be a great ranger and he's basically guaranteed to be accepted into the academy. I think he's "
 requirements = Array[ExtResource("4_l7wfj")]([])
+world_key = ""
 
 [resource]
 script = ExtResource("2_khguh")
 texts = Array[ExtResource("3_unq4n")]([SubResource("Resource_dy56e")])
 choices = Array[ExtResource("1_6ee6y")]([ExtResource("2_bm2t7"), ExtResource("3_foufm")])
 next_entry = ExtResource("4_bwi0r")
-sequence_tag = "day1"
+sequence_tag = "preparations"

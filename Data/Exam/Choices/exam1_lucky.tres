@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ChoiceData" load_steps=6 format=3 uid="uid://df1tnwkdswdeh"]
+
+[ext_resource type="Script" path="res://Data/choice_effect.gd" id="1_vfunj"]
+[ext_resource type="Script" path="res://Data/change_world_value.gd" id="2_bqfdr"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="3_mn130"]
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="4_84om7"]
+
+[sub_resource type="Resource" id="Resource_xaipy"]
+script = ExtResource("2_bqfdr")
+key = "player.camaraderie"
+value = "1"
+type = 2
+operation = 2
+
+[resource]
+script = ExtResource("4_84om7")
+choice_tag = "EXAM1_OPENING"
+text = "lucky for me. It gave me the opening I needed to pass the exam."
+button_text = "Lucky"
+effects = Array[ExtResource("1_vfunj")]([SubResource("Resource_xaipy")])
+requirements = Array[ExtResource("3_mn130")]([])

@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=11 format=3 uid="uid://b5lehahjmlhe1"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_s1fh3"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_fxyji"]
+[ext_resource type="Resource" uid="uid://b8eyekyhwrryr" path="res://Data/Expedition/expedition8.tres" id="2_qo7lu"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_e2ovl"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="4_xcnjo"]
+
+[sub_resource type="Resource" id="Resource_bej2n"]
+script = ExtResource("3_e2ovl")
+text = "We returned to the academy the next day. Thankfully, nobody died, but several of us were injured. "
+requirements = Array[ExtResource("4_xcnjo")]([])
+world_key = ""
+
+[sub_resource type="Resource" id="Resource_dlhyx"]
+script = ExtResource("4_xcnjo")
+key = "player.attitude"
+value = "1"
+type = 2
+operator = 1
+
+[sub_resource type="Resource" id="Resource_2syco"]
+script = ExtResource("3_e2ovl")
+text = "I only got some cuts and bruises, so I only needed a day before I could return to classes."
+requirements = Array[ExtResource("4_xcnjo")]([SubResource("Resource_dlhyx")])
+world_key = "player.attitude"
+
+[sub_resource type="Resource" id="Resource_1vgvy"]
+script = ExtResource("4_xcnjo")
+key = "player.attitude"
+value = "1"
+type = 2
+operator = 4
+
+[sub_resource type="Resource" id="Resource_rtt55"]
+script = ExtResource("3_e2ovl")
+text = "I got injured pretty badly, and I couldn't move for several days."
+requirements = Array[ExtResource("4_xcnjo")]([SubResource("Resource_1vgvy")])
+world_key = "player.attitude"
+
+[resource]
+script = ExtResource("2_fxyji")
+texts = Array[ExtResource("3_e2ovl")]([SubResource("Resource_bej2n"), SubResource("Resource_2syco"), SubResource("Resource_rtt55")])
+choices = Array[ExtResource("1_s1fh3")]([])
+next_entry = ExtResource("2_qo7lu")
+sequence_tag = "expedition"

@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=13 format=3 uid="uid://byl3r4wyustrq"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_0vud6"]
+[ext_resource type="Script" path="res://Data/choice_effect.gd" id="2_xea0s"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_ys6i1"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_ia8dw"]
+[ext_resource type="Script" path="res://Data/change_world_value.gd" id="3_k0te7"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="4_do8c4"]
+[ext_resource type="Resource" uid="uid://ch4f4nt06punh" path="res://Data/Exam/exam6.tres" id="5_axrj3"]
+
+[sub_resource type="Resource" id="Resource_e2rnh"]
+script = ExtResource("3_k0te7")
+key = "player.attitude"
+value = "1"
+type = 2
+operation = 2
+
+[sub_resource type="Resource" id="Resource_m3gtd"]
+script = ExtResource("1_0vud6")
+choice_tag = ""
+text = "worried. Will the classes be as difficult as this exam? "
+button_text = "Worried"
+effects = Array[ExtResource("2_xea0s")]([SubResource("Resource_e2rnh")])
+requirements = Array[ExtResource("4_do8c4")]([])
+
+[sub_resource type="Resource" id="Resource_6xpqq"]
+script = ExtResource("3_k0te7")
+key = "player.attitude"
+value = "1"
+type = 2
+operation = 1
+
+[sub_resource type="Resource" id="Resource_7nom8"]
+script = ExtResource("1_0vud6")
+choice_tag = ""
+text = "relieved. I'm on the way to becoming a ranger!"
+button_text = "Relieved"
+effects = Array[ExtResource("2_xea0s")]([SubResource("Resource_6xpqq")])
+requirements = Array[ExtResource("4_do8c4")]([])
+
+[sub_resource type="Resource" id="Resource_6wd31"]
+script = ExtResource("3_ia8dw")
+text = "By the end, a dozen of us were left. Everyone was exhausted, but we all passed and starting tomorrow we'll be classmates. I'm "
+requirements = Array[ExtResource("4_do8c4")]([])
+world_key = ""
+
+[resource]
+script = ExtResource("2_ys6i1")
+texts = Array[ExtResource("3_ia8dw")]([SubResource("Resource_6wd31")])
+choices = Array[ExtResource("1_0vud6")]([SubResource("Resource_m3gtd"), SubResource("Resource_7nom8")])
+next_entry = ExtResource("5_axrj3")
+sequence_tag = "entrance_exam"

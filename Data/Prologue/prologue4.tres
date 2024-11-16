@@ -10,6 +10,7 @@
 script = ExtResource("4_irif1")
 text = "Today, monsters are a normal part of life, and Ranger companies dedicated to finding and destroying lairs are ubiquitous. To ensure that their ranks are filled with the best monster slayers, many Ranger companies established academies that train young candidates."
 requirements = Array[ExtResource("5_sseav")]([])
+world_key = ""
 
 [resource]
 script = ExtResource("2_orjko")

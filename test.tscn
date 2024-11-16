@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3y326g06hf6g"]
+
+[ext_resource type="Script" path="res://test.gd" id="1_2hnwi"]
+[ext_resource type="Texture2D" uid="uid://u078a8s5bj8l" path="res://Assets/book.png" id="2_xpkw7"]
+[ext_resource type="FontFile" uid="uid://l3y6ih5w8yke" path="res://Assets/Fonts/vividly/Vividly-Regular.otf" id="3_32hcn"]
+
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2hnwi")
+color1 = Color(0.305477, 0.470785, 0.176541, 1)
+color2 = Color(0.541254, 0.312213, 0.724786, 1)
+
+[node name="BookBackground" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_left = -840.0
+offset_top = -24.0
+offset_right = 841.0
+offset_bottom = 921.0
+texture = ExtResource("2_xpkw7")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 90
+
+[node name="TestLabel" type="RichTextLabel" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_32hcn")
+theme_override_font_sizes/normal_font_size = 54
+bbcode_enabled = true
+text = "enoinarst"

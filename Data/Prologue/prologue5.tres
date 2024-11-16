@@ -9,6 +9,7 @@
 script = ExtResource("3_s2o4n")
 text = "You live near one such academy, and soon you will be old enough to apply for admission. You decide to keep a journal of your time at the Ranger academy."
 requirements = Array[ExtResource("4_cwv3b")]([])
+world_key = ""
 
 [resource]
 script = ExtResource("2_6vg0x")

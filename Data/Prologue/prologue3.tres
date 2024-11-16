@@ -10,6 +10,7 @@
 script = ExtResource("4_en8sv")
 text = "Though they only sought to bleed the nation of warriors, in their desperation the wizards made a mistake. Following the first lair, countless others appeared across the world, each bringing ruin to the surrounding lands. It took several generations and the combined efforts of many nations to retake the lost lands and destroy most of the lairs."
 requirements = Array[ExtResource("5_ait5e")]([])
+world_key = ""
 
 [resource]
 script = ExtResource("2_brjf2")

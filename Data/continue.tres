@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="ChoiceData" load_steps=2 format=3 uid="uid://drngiwv6401v0"]
+[gd_resource type="Resource" script_class="ChoiceData" load_steps=4 format=3 uid="uid://drngiwv6401v0"]
 
+[ext_resource type="Script" path="res://Data/choice_effect.gd" id="1_nno0l"]
 [ext_resource type="Script" path="res://Data/choice_data.gd" id="1_u50g5"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="2_m3gkx"]
 
 [resource]
 script = ExtResource("1_u50g5")
 choice_tag = "CONTINUE"
 text = "Continue"
+button_text = "Continue"
+effects = Array[ExtResource("1_nno0l")]([])
+requirements = Array[ExtResource("2_m3gkx")]([])

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=9 format=3 uid="uid://chk0v0wtdb6os"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_r6j4h"]
+[ext_resource type="Resource" uid="uid://dmi7rvqtsmady" path="res://Data/Exam/Choices/exam1_clever.tres" id="2_2ffs7"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_385pa"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_1pnke"]
+[ext_resource type="Resource" uid="uid://df1tnwkdswdeh" path="res://Data/Exam/Choices/exam1_lucky.tres" id="3_tbmqi"]
+[ext_resource type="Resource" uid="uid://bl234ecv80lfd" path="res://Data/Exam/exam4.tres" id="4_orq1y"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="4_v10c2"]
+
+[sub_resource type="Resource" id="Resource_iihj2"]
+script = ExtResource("3_1pnke")
+text = "I only managed to get hit one of them when Sam rushed in and feinted an attack. We both ended up facedown on the dirt, but our swords grazed the ranger's armor. Sam's attack was "
+requirements = Array[ExtResource("4_v10c2")]([])
+world_key = ""
+
+[resource]
+script = ExtResource("2_385pa")
+texts = Array[ExtResource("3_1pnke")]([SubResource("Resource_iihj2")])
+choices = Array[ExtResource("1_r6j4h")]([ExtResource("2_2ffs7"), ExtResource("3_tbmqi")])
+next_entry = ExtResource("4_orq1y")
+sequence_tag = "entrance_exam"
