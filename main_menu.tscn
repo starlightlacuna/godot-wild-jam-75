@@ -92,8 +92,10 @@ size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[font_size=56][center]Credits[/center][/font_size]
-[ul]	\"Midnight Tale\" Kevin MacLeod ([url=https://incompetech.com]incompetech.com[/url]) Licensed under Creative Commons: By Attribution 4.0 License ([url]http://creativecommons.org/licenses/by/4.0/[/url])[/ul]
-[ul]	\"EPIC-Collection book\" Melissa Krautheim ([url]https://opengameart.org/content/epic-collection-book[/url]) Dedicated to the public domain through CC0 1.0 Universal ([url]https://creativecommons.org/publicdomain/zero/1.0/[/url])[/ul]"
+[ul]	\"Midnight Tale\" by Kevin MacLeod ([url=https://incompetech.com]incompetech.com[/url]). Licensed under Creative Commons: By Attribution 4.0 License ([url]http://creativecommons.org/licenses/by/4.0/[/url]).[/ul]
+[ul]	\"EPIC-Collection book\" by Melissa Krautheim ([url]https://opengameart.org/content/epic-collection-book[/url]). Dedicated to the public domain through CC0 1.0 Universal ([url]https://creativecommons.org/publicdomain/zero/1.0/[/url]).[/ul]
+[ul]	\"Comfortaa\" by Johann Aakerlund ([url]https://www.dafont.com/comfortaa.font[/url]). Licensed under SIL Open Font License Version 1.1 ([url]https://openfontlicense.org/open-font-license-official-text/[/url]).[/ul]
+[ul]	\"Vividly\" by Tata ([url]https://www.dafont.com/vividly.font[/url]). Available for commerial and non-commercial use.[/ul]"
 
 [node name="CreditsBackButton" type="Button" parent="MarginContainer/CreditsContainer"]
 custom_minimum_size = Vector2(250, 0)
