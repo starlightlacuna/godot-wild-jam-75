@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cncf0vy3hh8k1"]
+[gd_scene load_steps=31 format=3 uid="uid://cncf0vy3hh8k1"]
 
 [ext_resource type="Theme" uid="uid://bkgwwjm1jx1re" path="res://UI/journal_theme.tres" id="1_dqd2l"]
 [ext_resource type="Script" path="res://journal.gd" id="1_i0mx5"]
@@ -24,21 +24,61 @@
 [ext_resource type="Resource" uid="uid://iivvp5kjxx3k" path="res://Assets/Audio/Resources/writing7.tres" id="19_hg33e"]
 [ext_resource type="Resource" uid="uid://cu5ytt2dhsxgk" path="res://Assets/Audio/Resources/writing8.tres" id="20_gtxl6"]
 [ext_resource type="FontFile" uid="uid://cor6msdnuxvqy" path="res://Assets/Fonts/comfortaa/Comfortaa-Bold.ttf" id="24_nlsfo"]
+[ext_resource type="AudioStream" uid="uid://c271mh4iad8i1" path="res://Assets/Audio/Midnight Tale.mp3" id="25_37fge"]
 
 [sub_resource type="Theme" id="Theme_83w35"]
 Button/font_sizes/font_size = 30
 Button/fonts/font = ExtResource("24_nlsfo")
+Label/font_sizes/font_size = 30
 Label/fonts/font = ExtResource("24_nlsfo")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewt77"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pxbt"]
 bg_color = Color(0.370364, 0.370365, 0.370364, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmqsb"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc8xa"]
 bg_color = Color(0.370364, 0.370365, 0.370364, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
 
 [node name="Journal" type="Control"]
 layout_mode = 3
@@ -140,7 +180,15 @@ text = "Attitude"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="AttitudeBar" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer/AttitudeContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/IntersequenceContainer/StatsContainer/AttitudeContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MinusLabel" type="Label" parent="MarginContainer/IntersequenceContainer/StatsContainer/AttitudeContainer/HBoxContainer"]
+layout_mode = 2
+text = "-"
+
+[node name="AttitudeBar" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer/AttitudeContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
@@ -154,6 +202,10 @@ step = 1.0
 rounded = true
 show_percentage = false
 
+[node name="PlusLabel" type="Label" parent="MarginContainer/IntersequenceContainer/StatsContainer/AttitudeContainer/HBoxContainer"]
+layout_mode = 2
+text = "+"
+
 [node name="CamaraderieContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
@@ -165,7 +217,15 @@ text = "Camaraderie"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="CamaraderieBar" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer/CamaraderieContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/IntersequenceContainer/StatsContainer/CamaraderieContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MinusLabel" type="Label" parent="MarginContainer/IntersequenceContainer/StatsContainer/CamaraderieContainer/HBoxContainer"]
+layout_mode = 2
+text = "-"
+
+[node name="CamaraderieBar" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer/CamaraderieContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
@@ -178,6 +238,10 @@ max_value = 3.0
 step = 1.0
 rounded = true
 show_percentage = false
+
+[node name="PlusLabel" type="Label" parent="MarginContainer/IntersequenceContainer/StatsContainer/CamaraderieContainer/HBoxContainer"]
+layout_mode = 2
+text = "+"
 
 [node name="SequenceButtonContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer"]
 unique_name_in_owner = true
@@ -250,6 +314,10 @@ text = "Main Menu"
 volume_db = -80.0
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_37fge")
+volume_db = -12.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="donezo" from="MarginContainer/JournalEntryContainer/EntryLabel" to="." method="_on_entry_label_donezo"]
 [connection signal="timeout" from="MarginContainer/JournalEntryContainer/EntryLabel/TextAdvanceTimer" to="MarginContainer/JournalEntryContainer/EntryLabel" method="_on_text_advance_timer_timeout"]

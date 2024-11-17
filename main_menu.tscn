@@ -26,6 +26,7 @@ script = ExtResource("3_klxlb")
 
 [node name="BookBackground" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
 offset_left = -840.0
 offset_top = -24.0
 offset_right = 841.0
@@ -88,7 +89,11 @@ alignment = 1
 [node name="CreditsLabel" type="RichTextLabel" parent="MarginContainer/CreditsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "These are the credits!"
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[font_size=56][center]Credits[/center][/font_size]
+[ul]	\"Midnight Tale\" Kevin MacLeod ([url=https://incompetech.com]incompetech.com[/url]) Licensed under Creative Commons: By Attribution 4.0 License ([url]http://creativecommons.org/licenses/by/4.0/[/url])[/ul]
+[ul]	\"EPIC-Collection book\" Melissa Krautheim ([url]https://opengameart.org/content/epic-collection-book[/url]) Dedicated to the public domain through CC0 1.0 Universal ([url]https://creativecommons.org/publicdomain/zero/1.0/[/url])[/ul]"
 
 [node name="CreditsBackButton" type="Button" parent="MarginContainer/CreditsContainer"]
 custom_minimum_size = Vector2(250, 0)
