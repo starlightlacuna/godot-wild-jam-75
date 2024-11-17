@@ -20,6 +20,8 @@ enum SfxType { PAGE_TURN, WRITING }
 @onready var sequence_button_container: VBoxContainer = %SequenceButtonContainer
 @onready var effects_player: AudioStreamPlayer = $EffectsPlayer
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
+@onready var attitude_bar: ProgressBar = %AttitudeBar
+@onready var camaraderie_bar: ProgressBar = %CamaraderieBar
 
 const choice_button_scene: PackedScene = preload("res://UI/choice_button.tscn")
 const continue_button_data: ChoiceData = preload("res://Data/continue.tres")
@@ -29,6 +31,19 @@ var choice_index: int = 0
 var current_entry: JournalEntryData
 
 func _ready() -> void:
+	var attitude_background_stylebox: StyleBox = attitude_bar.get_theme_stylebox("background")
+	attitude_background_stylebox.set("bg_color", attitude_min_color)
+	attitude_bar.add_theme_stylebox_override("background", attitude_background_stylebox)
+	var attitude_fill_stylebox: StyleBox = attitude_bar.get_theme_stylebox("fill")
+	attitude_fill_stylebox.set("bg_color", attitude_max_color)
+	attitude_bar.add_theme_stylebox_override("fill", attitude_fill_stylebox)
+	var camaraderie_background_stylebox: StyleBox = camaraderie_bar.get_theme_stylebox("background")
+	camaraderie_background_stylebox.set("bg_color", camaraderie_min_color)
+	camaraderie_bar.add_theme_stylebox_override("background", camaraderie_background_stylebox)
+	var camaraderie_fill_stylebox: StyleBox = camaraderie_bar.get_theme_stylebox("fill")
+	camaraderie_fill_stylebox.set("bg_color", camaraderie_max_color)
+	camaraderie_bar.add_theme_stylebox_override("fill", camaraderie_fill_stylebox)
+	#attitude_bar.theme_override_styles/"background"/"bg_color" = attitude_max_color
 	for child in sequence_button_container.get_children():
 		var sequence_button: SequenceButton = child
 		sequence_button.pressed.connect(_on_sequence_button_pressed.bind(sequence_button.sequence_tag))
@@ -100,6 +115,7 @@ func _change_mode(mode: Mode) -> void:
 					sequence_button.show()
 				else:
 					sequence_button.hide()
+			_update_stats()
 
 func _clear_entry_label() -> void:
 	entry_label.clear()
@@ -138,7 +154,7 @@ func _play_sfx(sfx_type: SfxType) -> void:
 			audio_array = page_turn_sfx
 		SfxType.WRITING:
 			audio_array = writing_sfx
-	var audio_data: SoundEffectData = page_turn_sfx[randi_range(0, page_turn_sfx.size() - 1)]
+	var audio_data: SoundEffectData = audio_array[randi_range(0, audio_array.size() - 1)]
 	effects_player.set_stream(audio_data.audio)
 	effects_player.set_volume_db(audio_data.volume_override)
 	effects_player.play()
@@ -177,3 +193,8 @@ func _start_current_entry() -> void:
 	var text: String = _get_current_entry_text()
 	entry_label.initialize(text)
 	entry_label.start_text_advance()
+	
+func _update_stats() -> void:
+	attitude_bar.set_value(clampi(JournalManager.world["player.attitude"], -3, 3))
+	camaraderie_bar.set_value(clampi(JournalManager.world["player.camaraderie"], -3, 3))
+	

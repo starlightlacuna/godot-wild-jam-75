@@ -1,8 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://cncf0vy3hh8k1"]
+[gd_scene load_steps=32 format=3 uid="uid://cncf0vy3hh8k1"]
 
 [ext_resource type="Script" path="res://journal.gd" id="1_i0mx5"]
 [ext_resource type="FontFile" uid="uid://l3y6ih5w8yke" path="res://Assets/Fonts/vividly/Vividly-Regular.otf" id="1_saxwu"]
-[ext_resource type="Resource" uid="uid://g0i66ygu6tu7" path="res://Data/Prologue/prologue5.tres" id="3_n6brh"]
+[ext_resource type="Resource" uid="uid://cfuv1ns8xlk0b" path="res://Data/Exam/exam1.tres" id="3_7diew"]
 [ext_resource type="Script" path="res://journal_label.gd" id="3_tdy8e"]
 [ext_resource type="Texture2D" uid="uid://u078a8s5bj8l" path="res://Assets/book.png" id="3_yxov7"]
 [ext_resource type="PackedScene" uid="uid://df452r7swku13" path="res://UI/choice_button.tscn" id="4_euoka"]
@@ -24,13 +24,28 @@
 [ext_resource type="Resource" uid="uid://fnlq00efetcn" path="res://Assets/Audio/Resources/writing6.tres" id="18_11uvy"]
 [ext_resource type="Resource" uid="uid://iivvp5kjxx3k" path="res://Assets/Audio/Resources/writing7.tres" id="19_hg33e"]
 [ext_resource type="Resource" uid="uid://cu5ytt2dhsxgk" path="res://Assets/Audio/Resources/writing8.tres" id="20_gtxl6"]
+[ext_resource type="FontFile" uid="uid://cor6msdnuxvqy" path="res://Assets/Fonts/comfortaa/Comfortaa-Bold.ttf" id="24_nlsfo"]
 
 [sub_resource type="Theme" id="Theme_5ffud"]
 Button/font_sizes/font_size = 56
 Button/fonts/font = ExtResource("1_saxwu")
-RichTextLabel/colors/default_color = Color(0.0936841, 0.129262, 0.243799, 1)
+Label/colors/font_color = Color(0.0941176, 0.129412, 0.243137, 1)
+RichTextLabel/colors/default_color = Color(0.0941176, 0.129412, 0.243137, 1)
 RichTextLabel/font_sizes/normal_font_size = 56
+RichTextLabel/fonts/bold_font = ExtResource("1_saxwu")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_saxwu")
+RichTextLabel/fonts/italics_font = ExtResource("1_saxwu")
 RichTextLabel/fonts/normal_font = ExtResource("1_saxwu")
+
+[sub_resource type="Theme" id="Theme_83w35"]
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("24_nlsfo")
+Label/fonts/font = ExtResource("24_nlsfo")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewt77"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pxbt"]
+bg_color = Color(0.370364, 0.370365, 0.370364, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmqsb"]
 
@@ -46,7 +61,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5ffud")
 script = ExtResource("1_i0mx5")
-journal_entry_override = ExtResource("3_n6brh")
+journal_entry_override = ExtResource("3_7diew")
 page_turn_sfx = Array[ExtResource("4_qp4fo")]([ExtResource("5_86j11"), ExtResource("6_mrem2"), ExtResource("7_lv32q"), ExtResource("8_jcrpg"), ExtResource("9_pq62e"), ExtResource("10_l60nf"), ExtResource("11_1mko8"), ExtResource("12_ugnte")])
 writing_sfx = Array[ExtResource("4_qp4fo")]([ExtResource("13_hqxp3"), ExtResource("14_0cc8y"), ExtResource("15_ggomv"), ExtResource("16_sy63e"), ExtResource("17_tgnjs"), ExtResource("18_11uvy"), ExtResource("19_hg33e"), ExtResource("20_gtxl6")])
 metadata/_edit_lock_ = true
@@ -106,6 +121,7 @@ layout_mode = 2
 [node name="IntersequenceContainer" type="Control" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = SubResource("Theme_83w35")
 metadata/_edit_lock_ = true
 
 [node name="StatsContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer"]
@@ -121,7 +137,7 @@ theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 54
 text = "Student Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -132,6 +148,7 @@ theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="MarginContainer/IntersequenceContainer/StatsContainer/AttitudeContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Attitude"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -142,8 +159,8 @@ custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_gmqsb")
-theme_override_styles/fill = SubResource("StyleBoxFlat_nc8xa")
+theme_override_styles/background = SubResource("StyleBoxFlat_ewt77")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1pxbt")
 min_value = -3.0
 max_value = 3.0
 step = 1.0
@@ -156,6 +173,7 @@ theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="MarginContainer/IntersequenceContainer/StatsContainer/CamaraderieContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Camaraderie"
 horizontal_alignment = 1
 vertical_alignment = 2

@@ -66,3 +66,5 @@ func reset_progress() -> void:
 			continue
 		sequences[key]["complete"] = false
 		(sequences[key]["choice_history"] as Array).clear()
+	world["player.attitude"] = 0
+	world["player.camaraderie"] = 0

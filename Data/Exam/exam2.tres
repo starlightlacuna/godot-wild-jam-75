@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_iihj2"]
 script = ExtResource("3_ksnlq")
-text = "Then, at the grounds, they gave us wooden swords and had us spar with [b][i]actual rangers[/i][/b]. To pass, we had to land a hit on them. There were over thirty of us and only five rangers, but it wasn't even close. I got scratched and bruised pretty bad. "
+text = "Then, at the grounds, they gave us wooden swords and had us spar with [pulse freq=1.0 ease=-2.0 color=#6AEC1399]actual rangers[/pulse]. To pass, we had to land a hit on them. There were over thirty of us and only five rangers, but it wasn't even close. I got scratched and bruised pretty bad. "
 requirements = Array[ExtResource("4_c2c01")]([])
 world_key = ""
 
