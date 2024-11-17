@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=9 format=3 uid="uid://1g3vcjfuboew"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_a27gd"]
+[ext_resource type="Resource" uid="uid://bkqr0t2gld2d4" path="res://Data/Day 1/Choices/day1_annoying.tres" id="2_gsdu4"]
+[ext_resource type="Resource" uid="uid://bcg3xa6bh24h5" path="res://Data/Day 1/Choices/day1_cool.tres" id="3_7l4xl"]
+[ext_resource type="Resource" uid="uid://8uaodmqidylv" path="res://Data/Day 1/Entries/day1_4.tres" id="4_gd0d3"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="5_bf5fx"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="6_j08ek"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="7_tr50u"]
+
+[sub_resource type="Resource" id="Resource_dy56e"]
+script = ExtResource("6_j08ek")
+text = "He's about the same age as me, but he's always been stronger and faster. Everyone thinks he'll be a great ranger and he's basically guaranteed to be accepted into the academy. I think he's "
+requirements = Array[ExtResource("7_tr50u")]([])
+world_key = ""
+
+[resource]
+script = ExtResource("5_bf5fx")
+texts = Array[ExtResource("6_j08ek")]([SubResource("Resource_dy56e")])
+choices = Array[ExtResource("1_a27gd")]([ExtResource("2_gsdu4"), ExtResource("3_7l4xl")])
+next_entry = ExtResource("4_gd0d3")
+sequence_tag = "preparations"

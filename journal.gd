@@ -48,6 +48,7 @@ func _ready() -> void:
 		var sequence_button: SequenceButton = child
 		sequence_button.pressed.connect(_on_sequence_button_pressed.bind(sequence_button.sequence_tag))
 	_clear_choices()
+	JournalManager.reset_progress()
 	if journal_entry_override:
 		current_entry = journal_entry_override
 		_start_current_entry()
@@ -90,6 +91,9 @@ func _on_continue_button_pressed() -> void:
 		print("SEQUENCE COMPLETE. MOVING TO INTERSEQUENCE MODE.")
 		JournalManager.sequences[current_entry.sequence_tag].complete = true
 		_change_mode(Mode.INTERSEQUENCE)
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 func _on_reset_button_pressed() -> void:
 	JournalManager.reset_progress()

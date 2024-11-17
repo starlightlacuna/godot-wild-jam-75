@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_gc0o0"]
 script = ExtResource("4_ckgkt")
-text = "With the warriors streaming through and sacking their city, the wizards completed their final spell.The earth shook violently and the citadel was sundered as it was swallowed by the ground. When the dust settled, a terrible roar echoed across the land. Monsters erupted from the ruins and ripped and tore through the warrior armies. Thus was the first monster lair created."
+text = "With the warriors streaming through and sacking their city, the wizards completed their final spell. The earth shook violently and the citadel was sundered as it was swallowed by the ground. When the dust settled, a terrible roar echoed across the land. Monsters erupted from the ruins and ripped and tore through the warrior armies. Thus was the first monster lair created."
 requirements = Array[ExtResource("5_ty6iv")]([])
 world_key = ""
 

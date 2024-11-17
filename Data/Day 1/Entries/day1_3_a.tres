@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JournalEntryData" load_steps=7 format=3 uid="uid://ct8q6hv0q7i25"]
+
+[ext_resource type="Script" path="res://Data/choice_data.gd" id="1_bah58"]
+[ext_resource type="Resource" uid="uid://1g3vcjfuboew" path="res://Data/Day 1/Entries/day1_3_b.tres" id="2_1hife"]
+[ext_resource type="Script" path="res://Data/journal_entry_data.gd" id="2_05ma3"]
+[ext_resource type="Script" path="res://Data/text_with_requirements.gd" id="3_tfmg3"]
+[ext_resource type="Script" path="res://Data/requirement.gd" id="5_yxw3i"]
+
+[sub_resource type="Resource" id="Resource_aepou"]
+script = ExtResource("3_tfmg3")
+text = "The other day I was at the market and saw my friend Sam. Even though we're not students yet, he's already putting in an order for an arming blade at the swordsmith!"
+requirements = Array[ExtResource("5_yxw3i")]([])
+world_key = ""
+
+[resource]
+script = ExtResource("2_05ma3")
+texts = Array[ExtResource("3_tfmg3")]([SubResource("Resource_aepou")])
+choices = Array[ExtResource("1_bah58")]([])
+next_entry = ExtResource("2_1hife")
+sequence_tag = ""

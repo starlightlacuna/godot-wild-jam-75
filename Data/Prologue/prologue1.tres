@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_67wdj"]
 script = ExtResource("4_sqvkx")
-text = "Long ago, a war was waged by two nations. One, a nation of powerful warriors; the other a nation of great wizards. The armies of the nation of warriors, with their far superior numbers and better generals, easily conquered much of the territory of the nation of wizards. After tremendous losses, the wizards made their last stand in their capital's citadel."
+text = "Long ago, a war was waged by two nations. One, a nation of powerful warriors. The other, a nation of great wizards. The armies of the nation of warriors, with their far superior numbers and better generals, easily conquered much of the territory of the nation of wizards. After tremendous losses, the wizards made their last stand in their capital's citadel."
 requirements = Array[ExtResource("5_fcem1")]([])
 world_key = ""
 
