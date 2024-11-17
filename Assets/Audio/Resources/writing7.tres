@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SoundEffectData" load_steps=3 format=3 uid="uid://iivvp5kjxx3k"]
+
+[ext_resource type="AudioStream" uid="uid://byl555ssr63cx" path="res://Assets/Audio/writing7.wav" id="1_l5wew"]
+[ext_resource type="Script" path="res://Assets/Audio/Resources/sound_effect_data.gd" id="2_nvq3a"]
+
+[resource]
+script = ExtResource("2_nvq3a")
+audio = ExtResource("1_l5wew")
+volume_override = 5.0

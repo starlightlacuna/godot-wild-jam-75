@@ -2,18 +2,24 @@ class_name Journal
 extends Control
 
 enum Mode { JOURNAL_ENTRY, INTERSEQUENCE }
+enum SfxType { PAGE_TURN, WRITING }
 
 @export var journal_entry_override: JournalEntryData
-@export var attitude_min_color: Color = Color("B4251C")
-@export var attitude_max_color: Color = Color("1CACB4")
-@export var camaraderie_min_color: Color = Color("4E782D")
-@export var camaraderie_max_color: Color = Color("8A50B9")
+@export var attitude_min_color: Color = Color("E21200")
+@export var attitude_max_color: Color = Color("00D0E2")
+@export var camaraderie_min_color: Color = Color("971DFF")
+@export var camaraderie_max_color: Color = Color("5FE200")
+@export_category("Audio")
+@export var page_turn_sfx: Array[SoundEffectData] = []
+@export var writing_sfx: Array[SoundEffectData] = []
 
 @onready var choice_container: HFlowContainer = %ChoiceContainer
 @onready var entry_label: JournalLabel = %EntryLabel
 @onready var journal_entry_container: VBoxContainer = %JournalEntryContainer
-@onready var intersequence_container: HBoxContainer = %IntersequenceContainer
+@onready var intersequence_container: Control = %IntersequenceContainer
 @onready var sequence_button_container: VBoxContainer = %SequenceButtonContainer
+@onready var effects_player: AudioStreamPlayer = $EffectsPlayer
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
 
 const choice_button_scene: PackedScene = preload("res://UI/choice_button.tscn")
 const continue_button_data: ChoiceData = preload("res://Data/continue.tres")
@@ -56,9 +62,11 @@ func _on_choice_button_pressed(choice_data: ChoiceData) -> void:
 	entry_label.append_choice_text(choice_data.text + "\n")
 	JournalManager.apply_choice_effects(choice_data)
 	choice_made = true
+	_play_sfx(SfxType.WRITING)
 
 func _on_continue_button_pressed() -> void:
 	_clear_choices()
+	_play_sfx(SfxType.PAGE_TURN)
 	if current_entry.next_entry:
 		current_entry = current_entry.next_entry
 		_start_current_entry()
@@ -67,10 +75,15 @@ func _on_continue_button_pressed() -> void:
 		JournalManager.sequences[current_entry.sequence_tag].complete = true
 		_change_mode(Mode.INTERSEQUENCE)
 
+func _on_reset_button_pressed() -> void:
+	JournalManager.reset_progress()
+	_change_mode(Mode.INTERSEQUENCE)
+
 func _on_sequence_button_pressed(sequence_tag: String) -> void:
 	current_entry = JournalManager.get_sequence_start(sequence_tag)
 	choice_index = 0
 	_start_current_entry()
+	_play_sfx(SfxType.PAGE_TURN)
 
 func _change_mode(mode: Mode) -> void:
 	match mode:
@@ -114,9 +127,21 @@ func _get_current_entry_text() -> String:
 				color_max = camaraderie_max_color
 			var lerp_weight: float = clamp((float(value) + 4.0) / 8.0, 0.0, 8.0)
 			var color_string: String = color_min.lerp(color_max, lerp_weight).to_html(false)
-			text += "[color=#%s]%s[/color]" % [color_string, text_with_requirements.text]
+			text += "[color=#%s][outline_size=4]%s[/outline_size][/color]" % [color_string, text_with_requirements.text]
 			break
 	return text
+
+func _play_sfx(sfx_type: SfxType) -> void:
+	var audio_array: Array[SoundEffectData]
+	match sfx_type:
+		SfxType.PAGE_TURN:
+			audio_array = page_turn_sfx
+		SfxType.WRITING:
+			audio_array = writing_sfx
+	var audio_data: SoundEffectData = page_turn_sfx[randi_range(0, page_turn_sfx.size() - 1)]
+	effects_player.set_stream(audio_data.audio)
+	effects_player.set_volume_db(audio_data.volume_override)
+	effects_player.play()
 
 func _show_choices() -> void:
 	# By default, we add a continue button so we can load the next entry in the sequence.

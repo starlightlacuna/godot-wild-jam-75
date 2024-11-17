@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3y326g06hf6g"]
+[gd_scene load_steps=6 format=3 uid="uid://c3y326g06hf6g"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_2hnwi"]
+[ext_resource type="AudioStream" uid="uid://dqs6p8yx63pok" path="res://Assets/Audio/page_turn8.wav" id="2_skos0"]
 [ext_resource type="Texture2D" uid="uid://u078a8s5bj8l" path="res://Assets/book.png" id="2_xpkw7"]
 [ext_resource type="FontFile" uid="uid://l3y6ih5w8yke" path="res://Assets/Fonts/vividly/Vividly-Regular.otf" id="3_32hcn"]
+[ext_resource type="AudioStream" uid="uid://cwetgvmblbgwk" path="res://Assets/Audio/writing8.wav" id="3_a14we"]
 
 [node name="Test" type="Control"]
 layout_mode = 3
@@ -12,8 +14,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2hnwi")
-color1 = Color(0.305477, 0.470785, 0.176541, 1)
-color2 = Color(0.541254, 0.312213, 0.724786, 1)
+color1 = Color(0.372549, 0.886275, 0, 1)
+color2 = Color(0.590606, 0.115448, 1, 1)
+audio_stream = ExtResource("2_skos0")
+audio_stream_2 = ExtResource("3_a14we")
+volume_override_2 = 8.0
 
 [node name="BookBackground" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(1280, 720)
@@ -46,3 +51,24 @@ theme_override_fonts/normal_font = ExtResource("3_32hcn")
 theme_override_font_sizes/normal_font_size = 54
 bbcode_enabled = true
 text = "enoinarst"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="TestAudioButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 313.0
+offset_right = 228.0
+offset_bottom = 321.0
+text = "Test Audio"
+
+[node name="TestAudioButton2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 357.0
+offset_right = 320.0
+offset_bottom = 388.0
+text = "Test Audio 2"
+
+[connection signal="pressed" from="TestAudioButton" to="." method="_on_test_audio_button_pressed"]
+[connection signal="pressed" from="TestAudioButton2" to="." method="_on_test_audio_button_2_pressed"]

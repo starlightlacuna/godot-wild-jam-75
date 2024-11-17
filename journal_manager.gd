@@ -9,7 +9,7 @@ var world: Dictionary = {
 var sequences: Dictionary = {
 	"prologue": {
 		"start": preload("res://Data/Prologue/prologue1.tres"),
-		"complete": false,
+		"complete": true,
 		"choice_history": [],
 		"next_sequence": "preparations"
 	},
@@ -59,3 +59,10 @@ func is_sequence_complete(key: String) -> bool:
 		printerr("Sequences dictionary doesn't have key: " + key)
 		return false
 	return sequences[key].complete
+
+func reset_progress() -> void:
+	for key in sequences:
+		if key == "prologue":
+			continue
+		sequences[key]["complete"] = false
+		(sequences[key]["choice_history"] as Array).clear()

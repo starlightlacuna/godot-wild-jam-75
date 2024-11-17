@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cncf0vy3hh8k1"]
+[gd_scene load_steps=28 format=3 uid="uid://cncf0vy3hh8k1"]
 
 [ext_resource type="Script" path="res://journal.gd" id="1_i0mx5"]
 [ext_resource type="FontFile" uid="uid://l3y6ih5w8yke" path="res://Assets/Fonts/vividly/Vividly-Regular.otf" id="1_saxwu"]
@@ -6,8 +6,24 @@
 [ext_resource type="Script" path="res://journal_label.gd" id="3_tdy8e"]
 [ext_resource type="Texture2D" uid="uid://u078a8s5bj8l" path="res://Assets/book.png" id="3_yxov7"]
 [ext_resource type="PackedScene" uid="uid://df452r7swku13" path="res://UI/choice_button.tscn" id="4_euoka"]
-[ext_resource type="Texture2D" uid="uid://b500siv7pq5d5" path="res://icon.svg" id="5_q54pe"]
+[ext_resource type="Script" path="res://Assets/Audio/Resources/sound_effect_data.gd" id="4_qp4fo"]
+[ext_resource type="Resource" uid="uid://icrr2byqbkip" path="res://Assets/Audio/Resources/page_turn1.tres" id="5_86j11"]
 [ext_resource type="Script" path="res://sequence_button.gd" id="5_s77bq"]
+[ext_resource type="Resource" uid="uid://dncqypwjoeunc" path="res://Assets/Audio/Resources/page_turn2.tres" id="6_mrem2"]
+[ext_resource type="Resource" uid="uid://dal8okfvcnwp" path="res://Assets/Audio/Resources/page_turn3.tres" id="7_lv32q"]
+[ext_resource type="Resource" uid="uid://d3dxiu8o3x2ao" path="res://Assets/Audio/Resources/page_turn4.tres" id="8_jcrpg"]
+[ext_resource type="Resource" uid="uid://b5dw7qy26dejf" path="res://Assets/Audio/Resources/page_turn5.tres" id="9_pq62e"]
+[ext_resource type="Resource" uid="uid://dq6hy1bdt0bjy" path="res://Assets/Audio/Resources/page_turn6.tres" id="10_l60nf"]
+[ext_resource type="Resource" uid="uid://dr7qwrlo7bxap" path="res://Assets/Audio/Resources/page_turn7.tres" id="11_1mko8"]
+[ext_resource type="Resource" uid="uid://b5m4yhyrmxd4" path="res://Assets/Audio/Resources/page_turn8.tres" id="12_ugnte"]
+[ext_resource type="Resource" uid="uid://ca7akmlc7xvip" path="res://Assets/Audio/Resources/writing1.tres" id="13_hqxp3"]
+[ext_resource type="Resource" uid="uid://duh0qvgyjyrjo" path="res://Assets/Audio/Resources/writing2.tres" id="14_0cc8y"]
+[ext_resource type="Resource" uid="uid://cjfjb50op3h5i" path="res://Assets/Audio/Resources/writing3.tres" id="15_ggomv"]
+[ext_resource type="Resource" uid="uid://8a3y4ylg60m2" path="res://Assets/Audio/Resources/writing4.tres" id="16_sy63e"]
+[ext_resource type="Resource" uid="uid://da8383wh0g8yx" path="res://Assets/Audio/Resources/writing5.tres" id="17_tgnjs"]
+[ext_resource type="Resource" uid="uid://fnlq00efetcn" path="res://Assets/Audio/Resources/writing6.tres" id="18_11uvy"]
+[ext_resource type="Resource" uid="uid://iivvp5kjxx3k" path="res://Assets/Audio/Resources/writing7.tres" id="19_hg33e"]
+[ext_resource type="Resource" uid="uid://cu5ytt2dhsxgk" path="res://Assets/Audio/Resources/writing8.tres" id="20_gtxl6"]
 
 [sub_resource type="Theme" id="Theme_5ffud"]
 Button/font_sizes/font_size = 56
@@ -15,6 +31,11 @@ Button/fonts/font = ExtResource("1_saxwu")
 RichTextLabel/colors/default_color = Color(0.0936841, 0.129262, 0.243799, 1)
 RichTextLabel/font_sizes/normal_font_size = 56
 RichTextLabel/fonts/normal_font = ExtResource("1_saxwu")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmqsb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc8xa"]
+bg_color = Color(0.370364, 0.370365, 0.370364, 1)
 
 [node name="Journal" type="Control"]
 layout_mode = 3
@@ -26,8 +47,8 @@ grow_vertical = 2
 theme = SubResource("Theme_5ffud")
 script = ExtResource("1_i0mx5")
 journal_entry_override = ExtResource("3_n6brh")
-camaraderie_min_color = Color(0.372549, 0.568627, 0.219608, 1)
-camaraderie_max_color = Color(0.415686, 0.219608, 0.568627, 1)
+page_turn_sfx = Array[ExtResource("4_qp4fo")]([ExtResource("5_86j11"), ExtResource("6_mrem2"), ExtResource("7_lv32q"), ExtResource("8_jcrpg"), ExtResource("9_pq62e"), ExtResource("10_l60nf"), ExtResource("11_1mko8"), ExtResource("12_ugnte")])
+writing_sfx = Array[ExtResource("4_qp4fo")]([ExtResource("13_hqxp3"), ExtResource("14_0cc8y"), ExtResource("15_ggomv"), ExtResource("16_sy63e"), ExtResource("17_tgnjs"), ExtResource("18_11uvy"), ExtResource("19_hg33e"), ExtResource("20_gtxl6")])
 metadata/_edit_lock_ = true
 
 [node name="BookBackground" type="TextureRect" parent="."]
@@ -56,6 +77,7 @@ theme_override_constants/margin_bottom = 90
 
 [node name="JournalEntryContainer" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="EntryLabel" type="RichTextLabel" parent="MarginContainer/JournalEntryContainer"]
@@ -81,14 +103,91 @@ alignment = 1
 [node name="ChoiceButton" parent="MarginContainer/JournalEntryContainer/ChoiceContainer" instance=ExtResource("4_euoka")]
 layout_mode = 2
 
-[node name="IntersequenceContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="IntersequenceContainer" type="Control" parent="MarginContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="StatsContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 149.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Student Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttitudeContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/IntersequenceContainer/StatsContainer/AttitudeContainer"]
+layout_mode = 2
+text = "Attitude"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AttitudeBar" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer/AttitudeContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_gmqsb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nc8xa")
+min_value = -3.0
+max_value = 3.0
+step = 1.0
+rounded = true
+show_percentage = false
+
+[node name="CamaraderieContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/IntersequenceContainer/StatsContainer/CamaraderieContainer"]
+layout_mode = 2
+text = "Camaraderie"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="CamaraderieBar" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer/CamaraderieContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_gmqsb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nc8xa")
+min_value = -3.0
+max_value = 3.0
+step = 1.0
+rounded = true
+show_percentage = false
 
 [node name="SequenceButtonContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.5
+offset_top = -104.0
+offset_right = 282.5
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 3.0
@@ -117,26 +216,25 @@ text = "The Expedition"
 script = ExtResource("5_s77bq")
 sequence_tag = "expedition"
 
-[node name="StatsContainer" type="VBoxContainer" parent="MarginContainer/IntersequenceContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 2.0
+[node name="ResetButton" type="Button" parent="MarginContainer/IntersequenceContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -49.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Reset"
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("5_q54pe")
-stretch_mode = 5
+[node name="EffectsPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
-layout_mode = 2
-
-[node name="ProgressBar2" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
-layout_mode = 2
-
-[node name="ProgressBar3" type="ProgressBar" parent="MarginContainer/IntersequenceContainer/StatsContainer"]
-layout_mode = 2
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="donezo" from="MarginContainer/JournalEntryContainer/EntryLabel" to="." method="_on_entry_label_donezo"]
 [connection signal="timeout" from="MarginContainer/JournalEntryContainer/EntryLabel/TextAdvanceTimer" to="MarginContainer/JournalEntryContainer/EntryLabel" method="_on_text_advance_timer_timeout"]
+[connection signal="pressed" from="MarginContainer/IntersequenceContainer/ResetButton" to="." method="_on_reset_button_pressed"]
