@@ -75,7 +75,10 @@ func _on_choice_button_pressed(choice_data: ChoiceData) -> void:
 	# TODO (REACH): Add choice selection animation.
 	_clear_choices()
 	var choice_history: Array = JournalManager.sequences[current_entry.sequence_tag].choice_history
-	choice_history.append(choice_data)
+	var choice_history_data: ChoiceHistoryData = ChoiceHistoryData.new()
+	choice_history_data.choice_data = choice_data
+	choice_history_data.world_data = JournalManager.world.duplicate()
+	choice_history.append(choice_history_data)
 	entry_label.append_choice_text(choice_data.text + "\n")
 	JournalManager.apply_choice_effects(choice_data)
 	choice_made = true
@@ -88,7 +91,6 @@ func _on_continue_button_pressed() -> void:
 		current_entry = current_entry.next_entry
 		_start_current_entry()
 	else:
-		print("SEQUENCE COMPLETE. MOVING TO INTERSEQUENCE MODE.")
 		JournalManager.sequences[current_entry.sequence_tag].complete = true
 		_change_mode(Mode.INTERSEQUENCE)
 
@@ -179,7 +181,7 @@ func _show_choices() -> void:
 	if JournalManager.sequences[current_entry.sequence_tag].complete:
 		var choice_history: Array = JournalManager.sequences[current_entry.sequence_tag].choice_history
 		for choice_data in choices:
-			if choice_data == choice_history[choice_index]:
+			if choice_data == choice_history[choice_index].choice_data:
 				choice_index += 1
 				entry_label.append_choice_text(choice_data.text + "\n")
 				choice_made = true

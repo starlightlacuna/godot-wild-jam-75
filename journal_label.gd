@@ -21,7 +21,7 @@ func _on_text_advance_timer_timeout() -> void:
 		donezo.emit()
 
 func append_choice_text(p_text: String) -> void:
-	append_text(p_text)
+	append_text("[color=#C7CFE9][outline_size=4][outline_color=#18213e]%s[/outline_color][/outline_size][/color]" % p_text)
 	timer.start()
 
 func initialize(p_text: String = "", p_text_speed: float = 0.0) -> void:

@@ -5,8 +5,8 @@ extends Resource
 @export var requirements: Array[Requirement]
 @export var world_key: String
 
-func are_requirements_fulfilled() -> bool:
+func are_requirements_fulfilled(world_override: Dictionary = {}) -> bool:
 	var fulfilled = true
 	for requirement in requirements:
-		fulfilled = fulfilled and requirement.is_fulfilled()
+		fulfilled = fulfilled and requirement.is_fulfilled(world_override)
 	return fulfilled
