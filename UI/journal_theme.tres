@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bkgwwjm1jx1re"]
+
+[ext_resource type="FontFile" uid="uid://l3y6ih5w8yke" path="res://Assets/Fonts/vividly/Vividly-Regular.otf" id="1_bapnd"]
+
+[resource]
+Button/font_sizes/font_size = 56
+Button/fonts/font = ExtResource("1_bapnd")
+Label/colors/font_color = Color(0.0941176, 0.129412, 0.243137, 1)
+RichTextLabel/colors/default_color = Color(0.0941176, 0.129412, 0.243137, 1)
+RichTextLabel/font_sizes/normal_font_size = 56
+RichTextLabel/fonts/bold_font = ExtResource("1_bapnd")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_bapnd")
+RichTextLabel/fonts/italics_font = ExtResource("1_bapnd")
+RichTextLabel/fonts/normal_font = ExtResource("1_bapnd")

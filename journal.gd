@@ -50,9 +50,10 @@ func _ready() -> void:
 	_clear_choices()
 	if journal_entry_override:
 		current_entry = journal_entry_override
+		_start_current_entry()
 	else:
-		current_entry = JournalManager.get_sequence_start("prologue")
-	_start_current_entry()
+		#current_entry = JournalManager.get_sequence_start("prologue")
+		_change_mode(Mode.INTERSEQUENCE)
 
 func _on_entry_label_donezo() -> void:
 	if choice_made:
